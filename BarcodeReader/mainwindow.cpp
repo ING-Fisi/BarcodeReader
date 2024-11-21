@@ -16,6 +16,7 @@
 #include <QIcon>
 #include <QMessageBox>
 #include <QTimer>
+#include <QRandomGenerator>
 
 
 /*******************************************
@@ -43,16 +44,21 @@ int iStatusReader=0;
 /***************************************************************************************************************************
  * Files directories
  ***************************************************************************************************************************/
-
-QString fileshomedirectory = "/home/tinylap/";
-QString filesDirectory = fileshomedirectory + "BarcodeReaderFiles";
-QString associationsDirectory = filesDirectory+"/Associations"; //"/home/fisitron/BarcodeReaderFiles/Associations";
-QString logsDirectory = filesDirectory+"/Logs";                 //"/home/fisitron/BarcodeReaderFiles/Logs";
-QString qrCodesDirectory = filesDirectory+"/QRCodes";           //"/home/fisitron/BarcodeReaderFiles/QRCodes";
-QString readersDirectory = filesDirectory+"/Readers";           //"/home/fisitron/BarcodeReaderFiles/Readers";
-QString downloadFolderPath = fileshomedirectory + "Downloads";
+//QString fileshomedirectory = "/home/tinylap/";
+//QString filesDirectory = fileshomedirectory + "BarcodeReaderFiles";
+//QString associationsDirectory = filesDirectory+"/Associations"; //"/home/fisitron/BarcodeReaderFiles/Associations";
+//QString logsDirectory = filesDirectory+"/Logs";                 //"/home/fisitron/BarcodeReaderFiles/Logs";
+//QString qrCodesDirectory = filesDirectory+"/QRCodes";           //"/home/fisitron/BarcodeReaderFiles/QRCodes";
+//QString readersDirectory = filesDirectory+"/Readers";           //"/home/fisitron/BarcodeReaderFiles/Readers";
+//QString downloadFolderPath = fileshomedirectory + "Downloads";
+//QString settingsDirectory = filesDirectory+"/Settings";
 /***************************************************************************************************************************/
 
+/*************************************************
+ * Booleano per il check del login
+ *************************************************/
+bool loginChecked=false;
+/*************************************************/
 
 
 /*********************************************************************************************************************************************************/
@@ -66,13 +72,42 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("QR CODE READER MANAGER");
 
 
-//    Ajs5qdSg.png
-//    Fisitron_Backdrop.PNG
-//    Fisitron_biglietto_da_visita.PNG
-//    Fisitron_biglietto_da_visita_rev1.PNG
-//    Fisitron_Cofanetto.PNG
-//    Fisitron_Logo.PNG
-//    FISITRON_LOGO_2.png
+    //***************************************************************//
+//    ui->tableWidget_qrcode_content->setColumnCount(3);
+//    ui->tableWidget_qrcode_content->setRowCount(1);
+
+//    DatePicker* picker1 = new DatePicker(this,DayType);
+//    picker1->setEditable(true);
+//    picker1->setTimeEditable(true);
+//    picker1->setTimePeriod(QTime(0, 0, 0), QTime(22, 59, 59));
+//    picker1->setTimeInputFormat("hh:mm:ss");
+
+//    DatePickerHumanReadableFormater *formater = new DatePickerHumanReadableFormater();
+//    // setup period delimeters in date string representation
+//    formater->setDateFromWord(QString::null);
+//    formater->setDateToWord("-");
+//    // disable showing words "today"/"yesterday"/"tomorrow" instead of date
+//    formater->setSpecialDayWordShown(true);
+//    // formater is used for date string representation in date picker label
+//    picker1->setFormater(formater);
+
+//    QLabel* QRCode_name = new QLabel("PN342334");
+//    QPushButton *stronzo = new QPushButton("STRONZO");
+
+//    ui->tableWidget_qrcode_content->setCellWidget(0,0,QRCode_name);
+//    ui->tableWidget_qrcode_content->setCellWidget(0,1,picker1);
+//    ui->tableWidget_qrcode_content->setCellWidget(0,2,stronzo);
+    //*******************************************************************//
+
+
+
+    //    Ajs5qdSg.png
+    //    Fisitron_Backdrop.PNG
+    //    Fisitron_biglietto_da_visita.PNG
+    //    Fisitron_biglietto_da_visita_rev1.PNG
+    //    Fisitron_Cofanetto.PNG
+    //    Fisitron_Logo.PNG
+    //    FISITRON_LOGO_2.png
 
     ui->page->setStyleSheet("QWidget#page {"
                             "border-image: url(/home/fisitron/BarcodeReaderFiles/Background/Fisitron_biglietto_da_visita.PNG) 0 0 0 0 stretch stretch;"
@@ -83,10 +118,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->page_2->setStyleSheet("QWidget#page_2 {"
                               "border-image: url(/home/fisitron/BarcodeReaderFiles/Background/Fisitron_biglietto_da_visita.PNG) 0 0 0 0 stretch stretch;"
-                            //"background-image:url(/home/fisitron/BarcodeReaderFiles/Background/Fisitron_Cofanetto.PNG);"
-                            //"background-repeat: no-repeat;"
-                            //"background-position: center;"
-                            "}");
+                              //"background-image:url(/home/fisitron/BarcodeReaderFiles/Background/Fisitron_Cofanetto.PNG);"
+                              //"background-repeat: no-repeat;"
+                              //"background-position: center;"
+                              "}");
 
     ui->label_8->setStyleSheet("QLabel{color: white; }");
     ui->label->setStyleSheet("QLabel{color: black; }");
@@ -225,6 +260,8 @@ void MainWindow::checkDirectories()
     checkDirectory(logsDirectory);
     checkDirectory(qrCodesDirectory);
     checkDirectory(readersDirectory);
+    checkDirectory(readersDirectory);
+    checkDirectory(settingsDirectory);
 }
 /*********************************************************************************************************************************************************/
 
@@ -285,7 +322,25 @@ void MainWindow::onWaitingFinished(){
  *******************************************************/
 void MainWindow::on_pB_addReader_clicked()
 {
+    //    loginDialog = new LoginDialog(this);
+    //    connect(loginDialog, &LoginDialog::LoginValid, this, &MainWindow::onLoginValid);
+    //    connect(loginDialog, &QDialog::finished, loginDialog, &QObject::deleteLater);
+    //    loginDialog->exec(); //loginDialog->show();
+
+    //    qDebug()<<"loginChecked: "<<loginChecked;
+
+    //    if(loginChecked==true){
+    //        openAddReaderDialog();
+    //    }
+
+    //    /********************************
+    //     * resetta loginChecked
+    //     ********************************/
+    //    loginChecked=false;
+    //    /********************************/
+
     openAddReaderDialog();
+
 }
 /*********************************************************************************************************************************************************/
 
@@ -639,6 +694,9 @@ void MainWindow::handleRequest(QHttpRequest *req, QHttpResponse *resp)
 
         } //END OF if( (posStrD != -1) && (posStrT != -1) && (posExpD != -1) && (posExpT != -1) )
 
+        //legge il file qrInfo.txt
+
+
     } //END OF if(matchFlag==true)
     /*****************************************************************************************************/
 
@@ -985,9 +1043,17 @@ void MainWindow::on_pushB_NewQrCode_clicked()
 /*********************************************************************************************************************************************************/
 /********************************************************************************************************************
  * Funzione richiamata a seguito della generazione di un nuovoQR Code.
- * Viene gestita l'omonimia inserendo un _ ed un numero progressivo
+ * L'omonimia viene gestita inserendo un _ ed un numero progressivo
  ********************************************************************************************************************/
-void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime)
+//void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &PhoneNumber,const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime)
+void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &PhoneNumber, const QString &Email, const QString &QrType, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime,
+                         const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
+                         const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
+                         const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
+                         const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
+                         const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
+                         const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
+                         const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday)
 {
     /**************************************************************
      * Variabile di appoggio per poter eventualmente
@@ -1004,15 +1070,15 @@ void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, 
     /****************************************************************************/
 
     /****************************************************************************
-     * Costruisce il nome ed il percorso al file
+     * Costruisce il nome ed il percorso al file .png
      ****************************************************************************/
     //QString qrCodesDirectory = "/home/fisitron/BarcodeReaderFiles/QRCodes";
-    //QString imageName = formattedDateTime+".jpg";
-    //QString imageName = Name+Surname+formattedDateTime+".jpg";
-    QString imageName = Name+Surname+".jpg";
+    //QString imageName = formattedDateTime+".png";
+    //QString imageName = Name+Surname+formattedDateTime+".png";
+    QString imageName = Name+Surname+".png";
     //QString ExpDate=ExpiringDate.remove('/');
     //QString ExpTime=ExpiringTime.remove(':');
-    //QString imageName = Name+Surname+ExpDate+ExpTime+".jpg";
+    //QString imageName = Name+Surname+ExpDate+ExpTime+".png";
     //qDebug()<<"Formatted ExpiringDate"<<ExpDate;
     //qDebug()<<"Formatted ExpiringTime"<<ExpTime;
     QString imagePath = QDir(qrCodesDirectory).filePath(imageName);
@@ -1025,7 +1091,7 @@ void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, 
     int index=0;
     QString strIndex;
     while(QFile::exists(imagePath)){
-        imagePath = imagePath.remove(".jpg");
+        imagePath = imagePath.remove(".png");
         QChar lastChar = imagePath.back();
         while(lastChar.isDigit()){
             imagePath.remove(lastChar);
@@ -1036,7 +1102,7 @@ void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, 
         }
         index++;
         strIndex=QString::number(index);
-        imagePath = imagePath+"_"+strIndex+".jpg";
+        imagePath = imagePath+"_"+strIndex+".png";
         mSurname = Surname+"_"+strIndex;
     }
     /**************************************************************/
@@ -1044,22 +1110,45 @@ void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, 
     /********************************************************************************************************
      * Lancia il programma qrencode sul Raspberry per generare il QR Code
      ********************************************************************************************************/
-    QString program = "qrencode";
+    //QString program = "qrencode";
+    QString program = "/home/tinylap/PROGETTI/BarcodeReader_SERVER/libqrencode/build/qrencode";
     QStringList arguments;
-    arguments << "!N!" + Name
-                 + "!SN!" + mSurname
-                 + "!EM!" + Email
-                 + "!StrD!" + StartingDate
-                 + "!StrT!" + StartingTime
-                 + "!ExpD!" + ExpiringDate
-                 + "!ExpT!" + ExpiringTime
-              << "-o" << imagePath; //<< "-o" << formattedDateTime + ".jpg"; //<< "-o output.jpg";
+
+    const QString fixedPart = "fisiQR!";
+    QString randomPart = generateRandomString(25);
+    QString qrCode = fixedPart+randomPart;
+    arguments << qrCode << "-o" << imagePath;
+
+    //arguments << "!N!" + Name
+    //             + "!SN!" + mSurname
+    //             + "!EM!" + Email
+    //             + "!StrD!" + StartingDate
+    //             + "!StrT!" + StartingTime
+    //             + "!ExpD!" + ExpiringDate
+    //             + "!ExpT!" + ExpiringTime
+    //          << "-o" << imagePath; //<< "-o" << formattedDateTime + ".png"; //<< "-o output.png";
 
     QProcess *myProcess = new QProcess(this);
     myProcess->start(program, arguments);
     myProcess->waitForFinished();
     myProcess->close();
     /********************************************************************************************************/
+
+    /******************************************************************************************************************
+     * Crea il file associato al QR Code generato sull'interfaccia
+     ******************************************************************************************************************/
+    //createQRInfoFile(Name, mSurname, PhoneNumber, Email, StartingDate, StartingTime, ExpiringDate, ExpiringTime);
+    createQRInfoFile(Name, mSurname, PhoneNumber, Email, QrType, StartingDate, StartingTime, ExpiringDate, ExpiringTime,
+                             monday, StartingTimeMonday, ExpiringTimeMonday,
+                             tuesday, StartingTimeTuesday, ExpiringTimeTuesday,
+                             wednsday, StartingTimeWednsday, ExpiringTimeWednsday,
+                             thursday, StartingTimeThursday, ExpiringTimeThursday,
+                             friday, StartingTimeFriday, ExpiringTimeFriday,
+                             saturday, StartingTimeSaturday, ExpiringTimeSaturday,
+                             sunday, StartingTimeSunday, ExpiringTimeSunday);
+    /******************************************************************************************************************/
+
+
 
     /**************************************************************
      * Visualizza il QR Code generato sull'interfaccia
@@ -1076,10 +1165,100 @@ void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, 
     /************************************************************************************
      * Aggiorna/crea il file dei log
      ************************************************************************************/
-    QString qrCode="!N!"+Name+"!SN!"+mSurname+"!EM!"+Email+"!StrD!"+StartingDate+"!StrT!"+StartingTime+"!ExpD!"+ExpiringDate+"!ExpT!"+ExpiringTime;
+    //QString qrCode="!N!"+Name+"!SN!"+mSurname+"!EM!"+Email+"!StrD!"+StartingDate+"!StrT!"+StartingTime+"!ExpD!"+ExpiringDate+"!ExpT!"+ExpiringTime;
     updateLogFile("QRCodeGenerated", logsDirectory, qrCode, "dummyReaderMAC", "dummyReaderID");
     /************************************************************************************/
 
+}
+/*********************************************************************************************************************************************************/
+
+
+/*********************************************************************************************************************************************************
+ * Funzione per la generazione della parte random del QR Code
+ *********************************************************************************************************************************************************/
+QString MainWindow::generateRandomString(int length){
+    const QString chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    QString randomString;
+    for(int i=0; i<length; i++){
+        int index = QRandomGenerator::global()->bounded(chars.length());
+        randomString.append(chars.at(index));
+    }
+    return randomString;
+}
+/*********************************************************************************************************************************************************/
+
+
+
+/*********************************************************************************************************************************************************/
+/************************************************************************************************
+ * Funzione che crea il file qrInfo.txt relativo al QR Code appena generato
+ ************************************************************************************************/
+//void MainWindow::createQRInfoFile(const QString &Name, const QString &mSurname, const QString &PhoneNumber,const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime)
+void MainWindow::createQRInfoFile(const QString &Name, const QString &mSurname, const QString &PhoneNumber, const QString &Email, const QString &QrType, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime,
+                             const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
+                             const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
+                             const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
+                             const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
+                             const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
+                             const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
+                             const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday)
+{
+
+    //QString readersDirectory = "/home/fisitron/BarcodeReaderFiles/Readers";
+    QString qrFolder = qrCodesDirectory+"/"+Name+mSurname;
+    QDir dir;
+    if(!dir.exists(qrFolder)){
+        if(!dir.mkpath(qrFolder)){
+            qWarning("createReaderFile: Impossible to create folder");
+            return;
+        }
+    }
+
+
+    QString fileName = qrFolder+"/"+"qrInfo.txt";
+
+    QFile file(fileName);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        qWarning("createReaderFile: Impossible to open file for writing");
+        return;
+    }
+    QTextStream out(&file);
+    out<<Name<<"\n";
+    out<<mSurname<<"\n";
+    out<<PhoneNumber<<"\n";
+    out<<Email<<"\n";
+
+    out<<QrType<<"\n";
+
+    out<<StartingDate<<"\n";
+    out<<StartingTime<<"\n";
+    out<<ExpiringDate<<"\n";
+    out<<ExpiringTime<<"\n";
+
+    out<<monday<<"\n";
+    out<<StartingTimeMonday<<"\n";
+    out<<ExpiringTimeMonday<<"\n";
+    out<<tuesday<<"\n";
+    out<<StartingTimeTuesday<<"\n";
+    out<<ExpiringTimeTuesday<<"\n";
+    out<<wednsday<<"\n";
+    out<<StartingTimeWednsday<<"\n";
+    out<<ExpiringTimeWednsday<<"\n";
+    out<<thursday<<"\n";
+    out<<StartingTimeThursday<<"\n";
+    out<<ExpiringTimeThursday<<"\n";
+    out<<friday<<"\n";
+    out<<StartingTimeFriday<<"\n";
+    out<<ExpiringTimeFriday<<"\n";
+    out<<saturday<<"\n";
+    out<<StartingTimeSaturday<<"\n";
+    out<<ExpiringTimeSaturday<<"\n";
+    out<<sunday<<"\n";
+    out<<StartingTimeSunday<<"\n";
+    out<<ExpiringTimeSunday<<"\n";
+
+
+    file.close();
 }
 /*********************************************************************************************************************************************************/
 
@@ -1100,6 +1279,7 @@ void MainWindow::showQRcode(QString imagePath)
         const char* NA = "Not Available";
         ui->l_Name->setText(NA);
         ui->l_Surname->setText(NA);
+        ui->l_phoneNumber->setText(NA);
         ui->l_Email->setText(NA);
         ui->l_StartDate->setText(NA);
         ui->l_StartTime->setText(NA);
@@ -1110,37 +1290,146 @@ void MainWindow::showQRcode(QString imagePath)
         /********************************************************************************
          * Decodifica il QR Code lanciando il programma zbarimg sul Raspberry
          ********************************************************************************/
-        QProcess *process = new QProcess(this);;
-        process->start("zbarimg", QStringList() << "--quiet" <<"--raw" << imagePath);
-        process->waitForFinished();
-        QString decodedQR = process->readAllStandardOutput().trimmed();
-        qDebug()<<"showQRcode: decodedQR = "<<decodedQR;
-        process->close();
-        /********************************************************************************/
+        //        QProcess *process = new QProcess(this);;
+        //        process->start("zbarimg", QStringList() << "--quiet" <<"--raw" << imagePath);
+        //        process->waitForFinished();
+        //        QString decodedQR = process->readAllStandardOutput().trimmed();
+        //        qDebug()<<"showQRcode: decodedQR = "<<decodedQR;
+        //        process->close();
+        //        /********************************************************************************/
 
-        /***********************************************************************************************
-         * Parsing di decodedQR per riempire i campi dell'interfaccia
-         ***********************************************************************************************/
-        QString name, surname, email, startDate, startTime, expDate, expTime;
-        if( parseDecodedQR(decodedQR, name, surname, email, startDate, startTime, expDate, expTime) ){
-            ui->l_Name->setText(name);
-            ui->l_Surname->setText(surname);
-            ui->l_Email->setText(email);
-            ui->l_StartDate->setText(startDate);
-            ui->l_StartTime->setText(startTime);
-            ui->l_ExpDate->setText(expDate);
-            ui->l_ExpTime->setText(expTime);
+        //        /***********************************************************************************************
+        //         * Parsing di decodedQR per riempire i campi dell'interfaccia
+        //         ***********************************************************************************************/
+        //        QString name, surname, email, startDate, startTime, expDate, expTime;
+        //        if( parseDecodedQR(decodedQR, name, surname, email, startDate, startTime, expDate, expTime) ){
+        //            ui->l_Name->setText(name);
+        //            ui->l_Surname->setText(surname);
+        //            ui->l_Email->setText(email);
+        //            ui->l_StartDate->setText(startDate);
+        //            ui->l_StartTime->setText(startTime);
+        //            ui->l_ExpDate->setText(expDate);
+        //            ui->l_ExpTime->setText(expTime);
+        //        }else{
+        //            const char* NA = "Not Available";
+        //            ui->l_Name->setText(NA);
+        //            ui->l_Surname->setText(NA);
+        //            ui->l_Email->setText(NA);
+        //            ui->l_StartDate->setText(NA);
+        //            ui->l_StartTime->setText(NA);
+        //            ui->l_ExpDate->setText(NA);
+        //            ui->l_ExpTime->setText(NA);
+        //        }
+        /***********************************************************************************************/
+
+
+        /************************************************************************************************
+         * legge il file qrInfo.txt relativo al QR Code selezionato
+         * Questo codice è alternativo alla decodifica ed al parsing scritti sopra
+         ************************************************************************************************/
+        if(imagePath.contains("/Readers/")){
+            int lastSlashIndex=imagePath.lastIndexOf('/');
+            QString result=imagePath.mid(lastSlashIndex+1);
+            imagePath=qrCodesDirectory+"/"+result;
+        }
+
+        QString qrFolderPath=imagePath;
+        qrFolderPath.chop(4);
+
+        QString Name, Surname, phoneNumber, Email, StartDate, StartTime, ExpDate, ExpTime;
+        QString qrInfoFileName = qrFolderPath+"/qrInfo.txt";
+        qDebug()<<"showQRcode(): qrInfoFileName = "<<qrInfoFileName;
+        QFile qrInfoFile(qrInfoFileName);
+        if(qrInfoFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+            QTextStream in(&qrInfoFile);
+
+            //Name = in.readLine();
+            //Surname = in.readLine();
+            //phoneNumber = in.readLine();
+            //Email = in.readLine();
+            //StartDate = in.readLine();
+            //StartTime = in.readLine();
+            //ExpDate = in.readLine();
+            //ExpTime = in.readLine();
+
+
+            Name = in.readLine();
+            Surname = in.readLine();
+            phoneNumber = in.readLine();
+            Email = in.readLine();
+            QString qrType = in.readLine();
+            StartDate = in.readLine();
+            StartTime = in.readLine();
+            ExpDate = in.readLine();
+            ExpTime = in.readLine();
+
+            QString sMondayChecked = in.readLine();
+            QString sMondayStartingTime = in.readLine();
+            QString sMondayExpiringTime = in.readLine();
+            QString sTuesdayChecked = in.readLine();
+            QString sTuesdayStartingTime = in.readLine();
+            QString sTuesdayExpiringTime = in.readLine();
+            QString sWednsdayChecked = in.readLine();
+            QString sWednsdayStartingTime = in.readLine();
+            QString sWednsdayExpiringTime = in.readLine();
+            QString sThursdayChecked = in.readLine();
+            QString sThursdayStartingTime = in.readLine();
+            QString sThursdayExpiringTime = in.readLine();
+            QString sFridayChecked = in.readLine();
+            QString sFridayStartingTime = in.readLine();
+            QString sFridayExpiringTime = in.readLine();
+            QString sSaturdayChecked = in.readLine();
+            QString sSaturdayStartingTime = in.readLine();
+            QString sSaturdayExpiringTime = in.readLine();
+            QString sSundayChecked = in.readLine();
+            QString sSundayStartingTime = in.readLine();
+            QString sSundayExpiringTime = in.readLine();
+
+
+            qrInfoFile.close();
+
+            ui->l_Name->setText(Name);
+            ui->l_Surname->setText(Surname);
+            ui->l_phoneNumber->setText(phoneNumber);
+            ui->l_Email->setText(Email);
+            //ui->l_StartDate->setText(StartDate);
+            //ui->l_StartTime->setText(StartTime);
+            //ui->l_ExpDate->setText(ExpDate);
+            //ui->l_ExpTime->setText(ExpTime);
+
+            if(qrType=="WithDeadline"){
+                ui->l_StartDate->setText(StartDate);
+                ui->l_StartTime->setText(StartTime);
+                ui->l_ExpDate->setText(ExpDate);
+                ui->l_ExpTime->setText(ExpTime);
+            }
+            if(qrType=="NoDeadline"){
+                ui->l_StartDate->setText("Periodico");
+                ui->l_StartTime->setText("No Deadline");
+                ui->l_ExpDate->setText("Periodico");
+                ui->l_ExpTime->setText("No Deadline");
+            }
+
+
+
         }else{
+            qWarning("showQRcode(): Impossible to read qrInfo.txt");
+
             const char* NA = "Not Available";
             ui->l_Name->setText(NA);
             ui->l_Surname->setText(NA);
+            ui->l_phoneNumber->setText(NA);
             ui->l_Email->setText(NA);
             ui->l_StartDate->setText(NA);
             ui->l_StartTime->setText(NA);
             ui->l_ExpDate->setText(NA);
             ui->l_ExpTime->setText(NA);
+
+            return;
         }
-        /***********************************************************************************************/
+        /************************************************************************************************/
+
+
     }
     /***********************************************************************************************************************/
 }
@@ -1283,19 +1572,25 @@ void MainWindow::updateQrCodeList(const QString &qrCodesDirectory){
      * Ottiene la lista dei file JPG nella directory
      ******************************************************************/
     QStringList filters;
-    filters<<"*.jpg"; //filters<<"*.clnt"; //filters<<"*.jpg";
+    filters<<"*.png"; //filters<<"*.clnt"; //filters<<"*.png";
     QFileInfoList fileList = dir.entryInfoList(filters,QDir::Files);
     /******************************************************************/
 
     /******************************************************************
-     * Pulisce la lista esistente
+     * Pulisce la lista esistente su listWidget_QrCodes
      ******************************************************************/
     ui->listWidget_QrCodes->clear();
     /******************************************************************/
 
-    /**************************************************************************************
-     * Aggiorna la listWidget_QrCodes
-     **************************************************************************************/
+    /******************************************************************
+     * Pulisce la lista QRCodeListTotal
+     ******************************************************************/
+    QRCodeListTotal.clear();
+    /******************************************************************/
+
+    /********************************************************************************************************
+     * Aggiorna la listWidget_QrCodes e QRCodeListTotal
+     ********************************************************************************************************/
     foreach(const QFileInfo &fileInfo, fileList){
         QListWidgetItem* item = new QListWidgetItem(fileInfo.fileName());
         item->setData(Qt::UserRole,fileInfo.filePath());
@@ -1303,18 +1598,184 @@ void MainWindow::updateQrCodeList(const QString &qrCodesDirectory){
         ui->listWidget_QrCodes->addItem(item);
 
 
+        /*************************************************************************************************
+         * legge il file qrInfo.txt relativo all'i-esimo QR Code
+         *************************************************************************************************/
+        QString qrFolderPath=fileInfo.filePath();
+        qrFolderPath.chop(4);
+        QString qrInfoFileName = qrFolderPath+"/qrInfo.txt";
+        qDebug()<<"showQRcode(): qrInfoFileName = "<<qrInfoFileName;
+        QFile qrInfoFile(qrInfoFileName);
+        if(qrInfoFile.open(QIODevice::ReadOnly | QIODevice::Text)){
 
-        //        QRCode* QRCode_i = new (QRCode);
+            QTextStream in(&qrInfoFile);
 
-        //        QRCode_i->reader_id=readerID;
-        //        QRCodeReader_i->reader_mac_address=readerMAC;
-        //        qDebug()<<"updateReaderList: QRCodeReader_i.reader_id"<<QRCodeReader_i->reader_id;
-        //        qDebug()<<"updateReaderList: QRCodeReader_i.reader_mac_address"<<QRCodeReader_i->reader_mac_address;
+            QRCode *QRcodeinstance = new QRCode(this);
 
-        //        QrcodeReader_list.append(QRCodeReader_i);
+            QRcodeinstance->name = in.readLine();
+            QRcodeinstance->surname = in.readLine();
+            QRcodeinstance->phonenumber = in.readLine();
+            QRcodeinstance->email = in.readLine();
+
+            QString qrType = in.readLine();
+            QString sStartingDate = in.readLine();
+            QString sStartingTime = in.readLine();
+            QString sExpiringDate = in.readLine();
+            QString sExpiringTime = in.readLine();
+
+            QString sMondayChecked = in.readLine();
+            QString sMondayStartingTime = in.readLine();
+            QString sMondayExpiringTime = in.readLine();
+            QString sTuesdayChecked = in.readLine();
+            QString sTuesdayStartingTime = in.readLine();
+            QString sTuesdayExpiringTime = in.readLine();
+            QString sWednsdayChecked = in.readLine();
+            QString sWednsdayStartingTime = in.readLine();
+            QString sWednsdayExpiringTime = in.readLine();
+            QString sThursdayChecked = in.readLine();
+            QString sThursdayStartingTime = in.readLine();
+            QString sThursdayExpiringTime = in.readLine();
+            QString sFridayChecked = in.readLine();
+            QString sFridayStartingTime = in.readLine();
+            QString sFridayExpiringTime = in.readLine();
+            QString sSaturdayChecked = in.readLine();
+            QString sSaturdayStartingTime = in.readLine();
+            QString sSaturdayExpiringTime = in.readLine();
+            QString sSundayChecked = in.readLine();
+            QString sSundayStartingTime = in.readLine();
+            QString sSundayExpiringTime = in.readLine();
+
+            DatePickerType type;
+            if(qrType == "WithDeadline"){
+                type=PeriodType;
+            }
+            if(qrType == "NoDeadline"){
+                type=DaysType;
+            }
+
+            QRcodeinstance->qrcode_datepicker_instance = new DatePicker(this,type);
+
+            //define  WD "WithDeadline"
+
+            if(qrType == "WithDeadline"){
+                QString sStartingDateTime=sStartingDate+" "+sStartingTime;
+                QString sExpiringDateTime=sExpiringDate+" "+sExpiringTime;
+                QString format = "dd/MM/yyyy hh:mm";
+                QDateTime StartingDateTime=QDateTime::fromString(sStartingDateTime,format);
+                QDateTime ExpiringDateTime=QDateTime::fromString(sExpiringDateTime,format);
+                QRcodeinstance->qrcode_datepicker_instance->setDateTimePeriod(StartingDateTime,ExpiringDateTime);
+            }
+
+            if(qrType == "NoDeadline"){
+                QString format = "hh:mm";
+                if(sMondayChecked=="YES"){
+                    QRcodeinstance->qrcode_datepicker_instance->daysOfWeek[0]=true;
+                    QTime StartingTime=QTime::fromString(sMondayStartingTime,format);
+                    QTime ExpiringTime=QTime::fromString(sMondayExpiringTime,format);
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[0]=StartingTime;
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[1]=ExpiringTime;
+                }
+                if(sTuesdayChecked=="YES"){
+                    QRcodeinstance->qrcode_datepicker_instance->daysOfWeek[1]=true;
+                    QTime StartingTime=QTime::fromString(sTuesdayStartingTime,format);
+                    QTime ExpiringTime=QTime::fromString(sTuesdayExpiringTime,format);
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[2]=StartingTime;
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[3]=ExpiringTime;
+                }
+                if(sWednsdayChecked=="YES"){
+                    QRcodeinstance->qrcode_datepicker_instance->daysOfWeek[2]=true;
+                    QTime StartingTime=QTime::fromString(sWednsdayStartingTime,format);
+                    QTime ExpiringTime=QTime::fromString(sWednsdayExpiringTime,format);
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[4]=StartingTime;
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[5]=ExpiringTime;
+                }
+                if(sThursdayChecked=="YES"){
+                    QRcodeinstance->qrcode_datepicker_instance->daysOfWeek[3]=true;
+                    QTime StartingTime=QTime::fromString(sThursdayStartingTime,format);
+                    QTime ExpiringTime=QTime::fromString(sThursdayExpiringTime,format);
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[6]=StartingTime;
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[7]=ExpiringTime;
+                }
+                if(sFridayChecked=="YES"){
+                    QRcodeinstance->qrcode_datepicker_instance->daysOfWeek[4]=true;
+                    QTime StartingTime=QTime::fromString(sFridayStartingTime,format);
+                    QTime ExpiringTime=QTime::fromString(sFridayExpiringTime,format);
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[8]=StartingTime;
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[9]=ExpiringTime;
+                }
+                if(sSaturdayChecked=="YES"){
+                    QRcodeinstance->qrcode_datepicker_instance->daysOfWeek[5]=true;
+                    QTime StartingTime=QTime::fromString(sSaturdayStartingTime,format);
+                    QTime ExpiringTime=QTime::fromString(sSaturdayExpiringTime,format);
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[10]=StartingTime;
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[11]=ExpiringTime;
+                }
+                if(sSundayChecked=="YES"){
+                    QRcodeinstance->qrcode_datepicker_instance->daysOfWeek[6]=true;
+                    QTime StartingTime=QTime::fromString(sSundayStartingTime,format);
+                    QTime ExpiringTime=QTime::fromString(sSundayExpiringTime,format);
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[12]=StartingTime;
+                    QRcodeinstance->qrcode_datepicker_instance->daysRanges[13]=ExpiringTime;
+                }
+
+
+            }
+
+            /****************************************************
+             * Aggiorna QRCodeListTotal
+             ****************************************************/
+            QRCodeListTotal.append(QRcodeinstance);
+            /****************************************************/
+
+        }
+        /*************************************************************************************************/
+    }
+    /********************************************************************************************************/
+
+
+    /**************************************************************************************
+     * Aggiorna tableWidget_qrcode_content
+     **************************************************************************************/
+    int numOfQRCode=QRCodeListTotal.length();
+    int index=0;
+    ui->tableWidget_qrcode_content->setColumnCount(3);
+    ui->tableWidget_qrcode_content->setRowCount(numOfQRCode);
+
+    foreach(QRCode* qrCode_i, QRCodeListTotal){
+
+        QString qrCodeName=qrCode_i->name;
+        QString qrCodeSurname=qrCode_i->surname;
+
+        qDebug()<<qrCodeName;
+        qDebug()<<qrCodeSurname;
+
+        QLabel* QRCode_name = new QLabel(qrCodeName+qrCodeSurname);
+        DatePicker* picker = qrCode_i->qrcode_datepicker_instance;
+        picker->setEditable(true);
+        picker->setTimeEditable(true);
+        picker->setTimeInputFormat("hh:mm");
+
+        DatePickerHumanReadableFormater *formater = new DatePickerHumanReadableFormater();
+        // setup period delimeters in date string representation
+        formater->setDateFromWord(QString()); //formater->setDateFromWord(QString::null);
+        formater->setDateToWord("-");
+        // disable showing words "today"/"yesterday"/"tomorrow" instead of date
+        formater->setSpecialDayWordShown(true);
+        // formater is used for date string representation in date picker label
+        picker->setFormater(formater);
+
+
+        QPushButton *pB_Button = new QPushButton("BUTTON");
+
+        ui->tableWidget_qrcode_content->setCellWidget(index,0,QRCode_name);
+        ui->tableWidget_qrcode_content->setCellWidget(index,1,picker);
+        ui->tableWidget_qrcode_content->setCellWidget(index,2,pB_Button);
+
+        index++;
 
     }
     /**************************************************************************************/
+
 
 }
 /*********************************************************************************************************************************************************/
@@ -1361,7 +1822,7 @@ void MainWindow::on_pB_downloadQR_clicked()
         QString name=ui->l_Name->text();
         QString surname=ui->l_Surname->text();
 
-        QString qrCodeFilePath=qrCodesDirectory+"/"+name+surname+".jpg";
+        QString qrCodeFilePath=qrCodesDirectory+"/"+name+surname+".png";
         QFileInfo qrCodeFileInfo(qrCodeFilePath);
         QString destinationFilePath = downloadFolderPath+"/"+qrCodeFileInfo.fileName();
         if(QFile::copy(qrCodeFilePath,destinationFilePath)){
@@ -1369,8 +1830,8 @@ void MainWindow::on_pB_downloadQR_clicked()
             QMessageBox::information(this, "Successo","File Scaricato Con Successo"); //QMessageBox::information(this, "Success","File Successfully Downloaded");
         }else{
             QMessageBox::warning(this, "Attenzione","          Download Non Avvenuto.\n"
-                                                 ""+qrCodeFileInfo.fileName()+" potrebbe già essere presente\n nella cartella Download.\n"
-                                                                              "Verificare prego.");
+                                                    ""+qrCodeFileInfo.fileName()+" potrebbe già essere presente\n nella cartella Download.\n"
+                                                                                 "Verificare prego.");
             //QMessageBox::warning(this, "Warning","          Failed To Download The QR Code.\n"
             //                                     ""+qrCodeFileInfo.fileName()+" could already be present\n in the download folder.\n"
             //                                                                  "Please check it.");
@@ -1424,7 +1885,7 @@ void MainWindow::expandReaderFolder(QListWidgetItem *folderItem)
 
     dir.setFilter(QDir::Files | QDir::NoDotAndDotDot);
 
-    dir.setNameFilters(QStringList()<<"*.jpg"); //dir.setNameFilters(QStringList()<<"**.clnt"); //dir.setNameFilters(QStringList()<<"*.jpg");
+    dir.setNameFilters(QStringList()<<"*.png"); //dir.setNameFilters(QStringList()<<"**.clnt"); //dir.setNameFilters(QStringList()<<"*.png");
     QFileInfoList list = dir.entryInfoList();
 
     QIcon fileIcon = QIcon::fromTheme("image-jpg");
@@ -1561,8 +2022,8 @@ void MainWindow::on_pB_associate_clicked()
 
     }else{
         QMessageBox::warning(this,"Errore","                              Associazione Fallita.\n"
-                                          "Il QR Code che si sta tentando di associare potrebbe essere già associato.\n"
-                                          "           Altrimenti assicurarsi di selezionare uno o più lettori.");
+                                           "Il QR Code che si sta tentando di associare potrebbe essere già associato.\n"
+                                           "           Altrimenti assicurarsi di selezionare uno o più lettori.");
         //QMessageBox::warning(this,"Error","                              Association Failed.\n"
         //                                  "The QR Code you are trying to associate could already be associated.\n"
         //                                  "           Otherwise be sure to select one or more reader.");
@@ -1737,7 +2198,7 @@ void MainWindow::on_pB_disassociate_clicked()
 
     }else{
         QMessageBox::warning(this,"Errore","        Disassociazione Fallita.\n"
-                                          "Assicurarsi di selezionare uno o più QR Code.");
+                                           "Assicurarsi di selezionare uno o più QR Code.");
         //QMessageBox::warning(this,"Error","        Disassociation Failed.\n"
         //                                  "Be sure to select one or more QR Codes.");
     }
@@ -1896,7 +2357,7 @@ void MainWindow::deleteQR()
     QListWidgetItem *selectedQrCodeItem = ui->listWidget_QrCodes->currentItem();
     if(!selectedQrCodeItem){
         QMessageBox::warning(this, "Attenzione","   Nessun QR Code selezionato per l'eliminazione permanente.\n"
-                                             "Selezionare un QR Code dalla lista sulla destra.");
+                                                "Selezionare un QR Code dalla lista sulla destra.");
         //QMessageBox::warning(this, "Warning","   No QR Code selected for permanent deletion.\n"
         //                                     "Please select a QR Code from the list on the right.");
         return;
@@ -1948,6 +2409,17 @@ void MainWindow::deleteQR()
      * Elimina il QR Code selezionato dalla cartella dei QRCodes
      *******************************************************************************************/
     QFile::remove(selectedItemPath);
+    /*******************************************************************************************/
+
+    /*******************************************************************************************
+     * Elimina la cartella associata al QR Code selezionato
+     *******************************************************************************************/
+    QString selectedItemFolderPath = selectedItemPath;
+    selectedItemFolderPath.chop(4);
+    QDir dir(selectedItemFolderPath);
+    if(dir.exists()){
+        dir.removeRecursively();
+    }
     /*******************************************************************************************/
 
     /**************************************************************************************************************
@@ -2211,7 +2683,7 @@ void MainWindow::deleteReader()
 
     if(selectedReaderItems.isEmpty() || checkRightSelection==false){
         QMessageBox::warning(this, "Attenzione","       Nessun lettore selezionato per l'eliminazione permanente.\n"
-                                             "Selezionare almeno un lettore dalla lista sulla sinistra.");
+                                                "Selezionare almeno un lettore dalla lista sulla sinistra.");
         //QMessageBox::warning(this, "Warning","       No Readers selected for permanent deletion.\n"
         //                                     "Please select at least one Reader from the list on the left.");
         return;
@@ -2405,7 +2877,7 @@ void MainWindow::on_pB_remoteOpen_clicked()
 
     if(!selectedReaderItem){
         QMessageBox::warning(this, "Attenzione","       Nessun lettore selezionato per l'apertura remota.\n"
-                                             "Selezionare un lettore dalla lista sulla sinistra.");
+                                                "Selezionare un lettore dalla lista sulla sinistra.");
         //QMessageBox::warning(this, "Warning","       No Reader selected for remote open.\n"
         //                                     "Please select a Reader from the list on the left.");
         return;
@@ -2419,7 +2891,7 @@ void MainWindow::on_pB_remoteOpen_clicked()
 
     if(checkRightSelection==false){
         QMessageBox::warning(this, "Attenzione","       Nessun lettore selezionato per l'apertura remota.\n"
-                                             "Selezionare un lettore dalla lista sulla sinistra.");
+                                                "Selezionare un lettore dalla lista sulla sinistra.");
         //QMessageBox::warning(this, "Warning","       No Readers selected for remote open.\n"
         //                                     "Please select one Reader from the list on the left.");
         return;
@@ -2437,7 +2909,7 @@ void MainWindow::on_pB_remoteOpen_clicked()
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(nullptr, "Conferma Apertura Remota",
                                       "Si sta tentando di aprire "+folderName+" da remoto.\n"
-                                                                          "         Premere YES per confermare.", QMessageBox::Yes | QMessageBox::No);
+                                                                              "         Premere YES per confermare.", QMessageBox::Yes | QMessageBox::No);
         //reply = QMessageBox::question(nullptr, "Confirm Remote Open",
         //                              "You are about to open "+folderName+" from remote.\n"
         //                                                                  "         Press YES to confirm.", QMessageBox::Yes | QMessageBox::No);
@@ -2487,16 +2959,52 @@ void MainWindow::on_pB_remoteOpen_clicked()
  ********************************************************************************************/
 void MainWindow::on_pB_FWD_clicked()
 {
-    int currentIndex=ui->stackedWidget->currentIndex();
-    int nextIndex=(currentIndex+1)%( ui->stackedWidget->count() );
-    ui->stackedWidget->setCurrentIndex(nextIndex);
+    /****************************************************************************************
+     * Per poter accedere alla pagina di gestione è necessario il login, pertanto quando si
+     * tenta di cambiare pagina viene aperta la dialog di login. Se il login ha successo
+     * viene aperta la pagina di gestione
+     ****************************************************************************************/
+    loginDialog = new LoginDialog(this);
+    connect(loginDialog, &LoginDialog::LoginValid, this, &MainWindow::onLoginValid);
+    connect(loginDialog, &QDialog::finished, loginDialog, &QObject::deleteLater);
+    loginDialog->exec(); //loginDialog->show();
 
-    if(nextIndex==1){
-        ui->pB_BWD->setEnabled(true);
-        ui->pB_FWD->setEnabled(false);
+    if(loginChecked==true){
+
+        int currentIndex=ui->stackedWidget->currentIndex();
+        int nextIndex=(currentIndex+1)%( ui->stackedWidget->count() );
+        ui->stackedWidget->setCurrentIndex(nextIndex);
+
+        if(nextIndex==1){
+            ui->pB_BWD->setEnabled(true);
+            ui->pB_FWD->setEnabled(false);
+        }
+
     }
 
-    //updateReaderList(readersDirectory);
+    /********************************
+     * resetta loginChecked
+     ********************************/
+    loginChecked=false;
+    /********************************/
+
+    /****************************************************************************************/
+
+
+    /********************************************************************************
+     * Vecchia versione non protetta da password
+     ********************************************************************************/
+    //    int currentIndex=ui->stackedWidget->currentIndex();
+    //    int nextIndex=(currentIndex+1)%( ui->stackedWidget->count() );
+    //    ui->stackedWidget->setCurrentIndex(nextIndex);
+
+    //    if(nextIndex==1){
+    //        ui->pB_BWD->setEnabled(true);
+    //        ui->pB_FWD->setEnabled(false);
+    //    }
+
+    //  //updateReaderList(readersDirectory);
+    /********************************************************************************/
 
 }
 /*********************************************************************************************************************************************************/
@@ -2509,6 +3017,7 @@ void MainWindow::on_pB_FWD_clicked()
  ********************************************************************************************/
 void MainWindow::on_pB_BWD_clicked()
 {
+
     int currentIndex=ui->stackedWidget->currentIndex();
     int prevIndex=(currentIndex - 1 + ui->stackedWidget->count() )%( ui->stackedWidget->count() );
     ui->stackedWidget->setCurrentIndex(prevIndex);
@@ -2518,7 +3027,20 @@ void MainWindow::on_pB_BWD_clicked()
         ui->pB_FWD->setEnabled(true);
     }
 
+
     //updateReaderList(readersDirectory);
+}
+/*********************************************************************************************************************************************************/
+
+
+
+/*********************************************************************************************************************************************************/
+/********************************************************************************************
+ * Callback richiamata a seguito del login
+ ********************************************************************************************/
+void MainWindow::onLoginValid(const bool loginFlag){
+    qDebug()<<"loginFlag: "<<loginFlag;
+    loginChecked=loginFlag;
 }
 /*********************************************************************************************************************************************************/
 

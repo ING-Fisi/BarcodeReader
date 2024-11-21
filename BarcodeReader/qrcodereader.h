@@ -34,7 +34,7 @@ public:
     QTimer* ControlTime;
 
 
-    QList<QRCode> Qrcode_list;
+    QList<int> Qrcode_idx;
 
 private slots:
     void onControlTimerTimeout();

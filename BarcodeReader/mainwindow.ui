@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>677</height>
+    <width>1064</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QListWidget" name="listWidget_Readers_2">
@@ -99,7 +99,7 @@
      <widget class="QPushButton" name="pB_associate">
       <property name="geometry">
        <rect>
-        <x>218</x>
+        <x>160</x>
         <y>50</y>
         <width>101</width>
         <height>41</height>
@@ -120,8 +120,8 @@
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>541</x>
-        <y>340</y>
+        <x>441</x>
+        <y>530</y>
         <width>159</width>
         <height>21</height>
        </rect>
@@ -163,8 +163,8 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>541</x>
-        <y>310</y>
+        <x>441</x>
+        <y>500</y>
         <width>69</width>
         <height>21</height>
        </rect>
@@ -186,9 +186,9 @@
      <widget class="QListWidget" name="listWidget_QrCodes">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>230</x>
         <y>100</y>
-        <width>240</width>
+        <width>181</width>
         <height>300</height>
        </rect>
       </property>
@@ -204,8 +204,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>400</y>
+        <x>440</x>
+        <y>590</y>
         <width>101</width>
         <height>41</height>
        </rect>
@@ -224,8 +224,8 @@
      <widget class="QLabel" name="l_QrCodeImage">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>30</y>
+        <x>800</x>
+        <y>110</y>
         <width>250</width>
         <height>250</height>
        </rect>
@@ -240,8 +240,8 @@
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>370</y>
+        <x>730</x>
+        <y>560</y>
         <width>41</width>
         <height>21</height>
        </rect>
@@ -283,8 +283,8 @@
      <widget class="QLabel" name="l_StartTime">
       <property name="geometry">
        <rect>
-        <x>870</x>
-        <y>340</y>
+        <x>770</x>
+        <y>530</y>
         <width>151</width>
         <height>21</height>
        </rect>
@@ -306,8 +306,8 @@
      <widget class="QLabel" name="l_Surname">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>280</y>
+        <x>550</x>
+        <y>440</y>
         <width>241</width>
         <height>21</height>
        </rect>
@@ -329,7 +329,7 @@
      <widget class="QPushButton" name="pushB_NewQrCode">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>280</x>
         <y>50</y>
         <width>191</width>
         <height>41</height>
@@ -369,8 +369,8 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>541</x>
-        <y>251</y>
+        <x>441</x>
+        <y>411</y>
         <width>72</width>
         <height>21</height>
        </rect>
@@ -401,7 +401,7 @@
        <rect>
         <x>20</x>
         <y>100</y>
-        <width>240</width>
+        <width>191</width>
         <height>300</height>
        </rect>
       </property>
@@ -420,8 +420,8 @@
      <widget class="QLabel" name="l_ExpTime">
       <property name="geometry">
        <rect>
-        <x>870</x>
-        <y>370</y>
+        <x>770</x>
+        <y>560</y>
         <width>151</width>
         <height>21</height>
        </rect>
@@ -443,8 +443,8 @@
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>541</x>
-        <y>370</y>
+        <x>441</x>
+        <y>560</y>
         <width>149</width>
         <height>21</height>
        </rect>
@@ -466,8 +466,8 @@
      <widget class="QLabel" name="l_ExpDate">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>370</y>
+        <x>590</x>
+        <y>560</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -489,8 +489,8 @@
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>541</x>
-        <y>280</y>
+        <x>441</x>
+        <y>440</y>
         <width>109</width>
         <height>21</height>
        </rect>
@@ -512,8 +512,8 @@
      <widget class="QLabel" name="l_StartDate">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>340</y>
+        <x>600</x>
+        <y>530</y>
         <width>131</width>
         <height>21</height>
        </rect>
@@ -535,8 +535,8 @@
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>340</y>
+        <x>730</x>
+        <y>530</y>
         <width>42</width>
         <height>21</height>
        </rect>
@@ -558,8 +558,8 @@
      <widget class="QLabel" name="l_Name">
       <property name="geometry">
        <rect>
-        <x>613</x>
-        <y>251</y>
+        <x>513</x>
+        <y>411</y>
         <width>277</width>
         <height>21</height>
        </rect>
@@ -581,8 +581,8 @@
      <widget class="QLabel" name="l_Email">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>310</y>
+        <x>510</x>
+        <y>500</y>
         <width>281</width>
         <height>21</height>
        </rect>
@@ -604,7 +604,7 @@
      <widget class="QPushButton" name="pB_deleteQR">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>280</x>
         <y>410</y>
         <width>141</width>
         <height>41</height>
@@ -619,6 +619,62 @@
       </property>
       <property name="text">
        <string>Elimina QR Code</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="l_phoneNumber">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>470</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Not Available</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>470</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Telefono:</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_qrcode_content">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>101</y>
+        <width>401</width>
+        <height>301</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -669,7 +725,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>1064</width>
      <height>22</height>
     </rect>
    </property>

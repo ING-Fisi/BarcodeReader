@@ -11,6 +11,8 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCalendarWidget>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
@@ -27,7 +29,8 @@ class Ui_NewQrCodeDialog
 {
 public:
     QPushButton *pB_generateQR;
-    QWidget *layoutWidget;
+    QCalendarWidget *calendarWidget;
+    QWidget *widget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
@@ -35,6 +38,9 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QLineEdit *lE_Surname;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *label_6;
+    QLineEdit *lE_phone;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_3;
     QLineEdit *lE_email;
@@ -42,33 +48,38 @@ public:
     QLabel *label_4;
     QDateEdit *startingDateEdit;
     QTimeEdit *startingTimeEdit;
+    QHBoxLayout *horizontalLayout_7;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_5;
     QDateEdit *expiringDateEdit;
     QTimeEdit *expiringTimeEdit;
+    QCheckBox *cB_noDeadline;
 
     void setupUi(QDialog *NewQrCodeDialog)
     {
         if (NewQrCodeDialog->objectName().isEmpty())
             NewQrCodeDialog->setObjectName(QString::fromUtf8("NewQrCodeDialog"));
-        NewQrCodeDialog->resize(400, 242);
+        NewQrCodeDialog->resize(499, 440);
         pB_generateQR = new QPushButton(NewQrCodeDialog);
         pB_generateQR->setObjectName(QString::fromUtf8("pB_generateQR"));
-        pB_generateQR->setGeometry(QRect(30, 190, 89, 25));
-        layoutWidget = new QWidget(NewQrCodeDialog);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(30, 20, 312, 163));
-        verticalLayout = new QVBoxLayout(layoutWidget);
+        pB_generateQR->setGeometry(QRect(30, 400, 89, 25));
+        calendarWidget = new QCalendarWidget(NewQrCodeDialog);
+        calendarWidget->setObjectName(QString::fromUtf8("calendarWidget"));
+        calendarWidget->setGeometry(QRect(10, 210, 461, 181));
+        widget = new QWidget(NewQrCodeDialog);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(30, 7, 361, 198));
+        verticalLayout = new QVBoxLayout(widget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        label = new QLabel(layoutWidget);
+        label = new QLabel(widget);
         label->setObjectName(QString::fromUtf8("label"));
 
         horizontalLayout->addWidget(label);
 
-        lE_Name = new QLineEdit(layoutWidget);
+        lE_Name = new QLineEdit(widget);
         lE_Name->setObjectName(QString::fromUtf8("lE_Name"));
 
         horizontalLayout->addWidget(lE_Name);
@@ -78,12 +89,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_2 = new QLabel(layoutWidget);
+        label_2 = new QLabel(widget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         horizontalLayout_2->addWidget(label_2);
 
-        lE_Surname = new QLineEdit(layoutWidget);
+        lE_Surname = new QLineEdit(widget);
         lE_Surname->setObjectName(QString::fromUtf8("lE_Surname"));
 
         horizontalLayout_2->addWidget(lE_Surname);
@@ -91,14 +102,29 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_2);
 
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        label_6 = new QLabel(widget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        horizontalLayout_6->addWidget(label_6);
+
+        lE_phone = new QLineEdit(widget);
+        lE_phone->setObjectName(QString::fromUtf8("lE_phone"));
+
+        horizontalLayout_6->addWidget(lE_phone);
+
+
+        verticalLayout->addLayout(horizontalLayout_6);
+
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        label_3 = new QLabel(layoutWidget);
+        label_3 = new QLabel(widget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
         horizontalLayout_3->addWidget(label_3);
 
-        lE_email = new QLineEdit(layoutWidget);
+        lE_email = new QLineEdit(widget);
         lE_email->setObjectName(QString::fromUtf8("lE_email"));
 
         horizontalLayout_3->addWidget(lE_email);
@@ -108,17 +134,18 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        label_4 = new QLabel(layoutWidget);
+        label_4 = new QLabel(widget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
         horizontalLayout_5->addWidget(label_4);
 
-        startingDateEdit = new QDateEdit(layoutWidget);
+        startingDateEdit = new QDateEdit(widget);
         startingDateEdit->setObjectName(QString::fromUtf8("startingDateEdit"));
+        startingDateEdit->setEnabled(false);
 
         horizontalLayout_5->addWidget(startingDateEdit);
 
-        startingTimeEdit = new QTimeEdit(layoutWidget);
+        startingTimeEdit = new QTimeEdit(widget);
         startingTimeEdit->setObjectName(QString::fromUtf8("startingTimeEdit"));
 
         horizontalLayout_5->addWidget(startingTimeEdit);
@@ -126,25 +153,36 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_5);
 
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        label_5 = new QLabel(layoutWidget);
+        label_5 = new QLabel(widget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
         horizontalLayout_4->addWidget(label_5);
 
-        expiringDateEdit = new QDateEdit(layoutWidget);
+        expiringDateEdit = new QDateEdit(widget);
         expiringDateEdit->setObjectName(QString::fromUtf8("expiringDateEdit"));
+        expiringDateEdit->setEnabled(false);
 
         horizontalLayout_4->addWidget(expiringDateEdit);
 
-        expiringTimeEdit = new QTimeEdit(layoutWidget);
+        expiringTimeEdit = new QTimeEdit(widget);
         expiringTimeEdit->setObjectName(QString::fromUtf8("expiringTimeEdit"));
 
         horizontalLayout_4->addWidget(expiringTimeEdit);
 
 
-        verticalLayout->addLayout(horizontalLayout_4);
+        horizontalLayout_7->addLayout(horizontalLayout_4);
+
+        cB_noDeadline = new QCheckBox(widget);
+        cB_noDeadline->setObjectName(QString::fromUtf8("cB_noDeadline"));
+
+        horizontalLayout_7->addWidget(cB_noDeadline);
+
+
+        verticalLayout->addLayout(horizontalLayout_7);
 
 
         retranslateUi(NewQrCodeDialog);
@@ -158,11 +196,13 @@ public:
         pB_generateQR->setText(QApplication::translate("NewQrCodeDialog", "GENERA", nullptr));
         label->setText(QApplication::translate("NewQrCodeDialog", "NOME:", nullptr));
         label_2->setText(QApplication::translate("NewQrCodeDialog", "COGNOME:", nullptr));
+        label_6->setText(QApplication::translate("NewQrCodeDialog", "TEL: ", nullptr));
         label_3->setText(QApplication::translate("NewQrCodeDialog", "EMAIL:", nullptr));
         label_4->setText(QApplication::translate("NewQrCodeDialog", "INIZIO VALIDITA':", nullptr));
         startingDateEdit->setDisplayFormat(QApplication::translate("NewQrCodeDialog", "dd/MM/yyyy", nullptr));
         label_5->setText(QApplication::translate("NewQrCodeDialog", "FINE VALIDITA':", nullptr));
         expiringDateEdit->setDisplayFormat(QApplication::translate("NewQrCodeDialog", "dd/MM/yyyy", nullptr));
+        cB_noDeadline->setText(QApplication::translate("NewQrCodeDialog", "MAI", nullptr));
     } // retranslateUi
 
 };

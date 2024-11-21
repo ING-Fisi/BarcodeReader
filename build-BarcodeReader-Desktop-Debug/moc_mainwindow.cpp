@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[81];
-    char stringdata0[1170];
+    QByteArrayData data[88];
+    char stringdata0[1259];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,67 +51,74 @@ QT_MOC_LITERAL(16, 214, 13), // "checkReaderID"
 QT_MOC_LITERAL(17, 228, 17), // "onQRCodeGenerated"
 QT_MOC_LITERAL(18, 246, 4), // "Name"
 QT_MOC_LITERAL(19, 251, 7), // "Surname"
-QT_MOC_LITERAL(20, 259, 5), // "Email"
-QT_MOC_LITERAL(21, 265, 12), // "StartingDate"
-QT_MOC_LITERAL(22, 278, 12), // "StartingTime"
-QT_MOC_LITERAL(23, 291, 12), // "ExpiringDate"
-QT_MOC_LITERAL(24, 304, 12), // "ExpiringTime"
-QT_MOC_LITERAL(25, 317, 10), // "showQRcode"
-QT_MOC_LITERAL(26, 328, 9), // "imagePath"
-QT_MOC_LITERAL(27, 338, 16), // "updateQrCodeList"
-QT_MOC_LITERAL(28, 355, 16), // "qrCodesDirectory"
-QT_MOC_LITERAL(29, 372, 14), // "parseDecodedQR"
-QT_MOC_LITERAL(30, 387, 9), // "decodedQR"
-QT_MOC_LITERAL(31, 397, 8), // "QString&"
-QT_MOC_LITERAL(32, 406, 4), // "name"
-QT_MOC_LITERAL(33, 411, 7), // "surname"
-QT_MOC_LITERAL(34, 419, 5), // "email"
-QT_MOC_LITERAL(35, 425, 9), // "startDate"
-QT_MOC_LITERAL(36, 435, 9), // "startTime"
-QT_MOC_LITERAL(37, 445, 7), // "expDate"
-QT_MOC_LITERAL(38, 453, 7), // "expTime"
-QT_MOC_LITERAL(39, 461, 21), // "onRefreshTimerTimeout"
-QT_MOC_LITERAL(40, 483, 13), // "handleRequest"
-QT_MOC_LITERAL(41, 497, 13), // "QHttpRequest*"
-QT_MOC_LITERAL(42, 511, 3), // "req"
-QT_MOC_LITERAL(43, 515, 14), // "QHttpResponse*"
-QT_MOC_LITERAL(44, 530, 4), // "resp"
-QT_MOC_LITERAL(45, 535, 26), // "on_pushB_NewQrCode_clicked"
-QT_MOC_LITERAL(46, 562, 24), // "on_pB_downloadQR_clicked"
-QT_MOC_LITERAL(47, 587, 16), // "createReaderFile"
-QT_MOC_LITERAL(48, 604, 16), // "updateReaderList"
-QT_MOC_LITERAL(49, 621, 16), // "readersDirectory"
-QT_MOC_LITERAL(50, 638, 33), // "on_listWidget_Readers_itemCli..."
-QT_MOC_LITERAL(51, 672, 16), // "QListWidgetItem*"
-QT_MOC_LITERAL(52, 689, 4), // "item"
-QT_MOC_LITERAL(53, 694, 18), // "expandReaderFolder"
-QT_MOC_LITERAL(54, 713, 10), // "folderItem"
-QT_MOC_LITERAL(55, 724, 20), // "collapseReaderFolder"
-QT_MOC_LITERAL(56, 745, 33), // "on_listWidget_QrCodes_itemCli..."
-QT_MOC_LITERAL(57, 779, 23), // "on_pB_associate_clicked"
-QT_MOC_LITERAL(58, 803, 22), // "updateAssociationsFile"
-QT_MOC_LITERAL(59, 826, 16), // "readerFolderPath"
-QT_MOC_LITERAL(60, 843, 9), // "parseLine"
-QT_MOC_LITERAL(61, 853, 4), // "line"
-QT_MOC_LITERAL(62, 858, 7), // "macAddr"
-QT_MOC_LITERAL(63, 866, 8), // "readerID"
-QT_MOC_LITERAL(64, 875, 6), // "qrCode"
-QT_MOC_LITERAL(65, 882, 26), // "on_pB_disassociate_clicked"
-QT_MOC_LITERAL(66, 909, 26), // "deleteAssociationsFileLine"
-QT_MOC_LITERAL(67, 936, 16), // "selectedItemPath"
-QT_MOC_LITERAL(68, 953, 22), // "on_pB_deleteQR_clicked"
-QT_MOC_LITERAL(69, 976, 8), // "deleteQR"
-QT_MOC_LITERAL(70, 985, 13), // "updateLogFile"
-QT_MOC_LITERAL(71, 999, 9), // "EventType"
-QT_MOC_LITERAL(72, 1009, 13), // "logsDirectory"
-QT_MOC_LITERAL(73, 1023, 9), // "readerMAC"
-QT_MOC_LITERAL(74, 1033, 26), // "on_pB_deleteReader_clicked"
-QT_MOC_LITERAL(75, 1060, 12), // "deleteReader"
-QT_MOC_LITERAL(76, 1073, 24), // "on_pB_remoteOpen_clicked"
-QT_MOC_LITERAL(77, 1098, 17), // "on_pB_FWD_clicked"
-QT_MOC_LITERAL(78, 1116, 17), // "on_pB_BWD_clicked"
-QT_MOC_LITERAL(79, 1134, 17), // "openWaitingDialog"
-QT_MOC_LITERAL(80, 1152, 17) // "onWaitingFinished"
+QT_MOC_LITERAL(20, 259, 11), // "PhoneNumber"
+QT_MOC_LITERAL(21, 271, 5), // "Email"
+QT_MOC_LITERAL(22, 277, 12), // "StartingDate"
+QT_MOC_LITERAL(23, 290, 12), // "StartingTime"
+QT_MOC_LITERAL(24, 303, 12), // "ExpiringDate"
+QT_MOC_LITERAL(25, 316, 12), // "ExpiringTime"
+QT_MOC_LITERAL(26, 329, 10), // "showQRcode"
+QT_MOC_LITERAL(27, 340, 9), // "imagePath"
+QT_MOC_LITERAL(28, 350, 16), // "updateQrCodeList"
+QT_MOC_LITERAL(29, 367, 16), // "qrCodesDirectory"
+QT_MOC_LITERAL(30, 384, 14), // "parseDecodedQR"
+QT_MOC_LITERAL(31, 399, 9), // "decodedQR"
+QT_MOC_LITERAL(32, 409, 8), // "QString&"
+QT_MOC_LITERAL(33, 418, 4), // "name"
+QT_MOC_LITERAL(34, 423, 7), // "surname"
+QT_MOC_LITERAL(35, 431, 5), // "email"
+QT_MOC_LITERAL(36, 437, 9), // "startDate"
+QT_MOC_LITERAL(37, 447, 9), // "startTime"
+QT_MOC_LITERAL(38, 457, 7), // "expDate"
+QT_MOC_LITERAL(39, 465, 7), // "expTime"
+QT_MOC_LITERAL(40, 473, 21), // "onRefreshTimerTimeout"
+QT_MOC_LITERAL(41, 495, 13), // "handleRequest"
+QT_MOC_LITERAL(42, 509, 13), // "QHttpRequest*"
+QT_MOC_LITERAL(43, 523, 3), // "req"
+QT_MOC_LITERAL(44, 527, 14), // "QHttpResponse*"
+QT_MOC_LITERAL(45, 542, 4), // "resp"
+QT_MOC_LITERAL(46, 547, 26), // "on_pushB_NewQrCode_clicked"
+QT_MOC_LITERAL(47, 574, 24), // "on_pB_downloadQR_clicked"
+QT_MOC_LITERAL(48, 599, 16), // "createReaderFile"
+QT_MOC_LITERAL(49, 616, 16), // "updateReaderList"
+QT_MOC_LITERAL(50, 633, 16), // "readersDirectory"
+QT_MOC_LITERAL(51, 650, 33), // "on_listWidget_Readers_itemCli..."
+QT_MOC_LITERAL(52, 684, 16), // "QListWidgetItem*"
+QT_MOC_LITERAL(53, 701, 4), // "item"
+QT_MOC_LITERAL(54, 706, 18), // "expandReaderFolder"
+QT_MOC_LITERAL(55, 725, 10), // "folderItem"
+QT_MOC_LITERAL(56, 736, 20), // "collapseReaderFolder"
+QT_MOC_LITERAL(57, 757, 33), // "on_listWidget_QrCodes_itemCli..."
+QT_MOC_LITERAL(58, 791, 23), // "on_pB_associate_clicked"
+QT_MOC_LITERAL(59, 815, 22), // "updateAssociationsFile"
+QT_MOC_LITERAL(60, 838, 16), // "readerFolderPath"
+QT_MOC_LITERAL(61, 855, 9), // "parseLine"
+QT_MOC_LITERAL(62, 865, 4), // "line"
+QT_MOC_LITERAL(63, 870, 7), // "macAddr"
+QT_MOC_LITERAL(64, 878, 8), // "readerID"
+QT_MOC_LITERAL(65, 887, 6), // "qrCode"
+QT_MOC_LITERAL(66, 894, 26), // "on_pB_disassociate_clicked"
+QT_MOC_LITERAL(67, 921, 26), // "deleteAssociationsFileLine"
+QT_MOC_LITERAL(68, 948, 16), // "selectedItemPath"
+QT_MOC_LITERAL(69, 965, 22), // "on_pB_deleteQR_clicked"
+QT_MOC_LITERAL(70, 988, 8), // "deleteQR"
+QT_MOC_LITERAL(71, 997, 13), // "updateLogFile"
+QT_MOC_LITERAL(72, 1011, 9), // "EventType"
+QT_MOC_LITERAL(73, 1021, 13), // "logsDirectory"
+QT_MOC_LITERAL(74, 1035, 9), // "readerMAC"
+QT_MOC_LITERAL(75, 1045, 26), // "on_pB_deleteReader_clicked"
+QT_MOC_LITERAL(76, 1072, 12), // "deleteReader"
+QT_MOC_LITERAL(77, 1085, 24), // "on_pB_remoteOpen_clicked"
+QT_MOC_LITERAL(78, 1110, 17), // "on_pB_FWD_clicked"
+QT_MOC_LITERAL(79, 1128, 17), // "on_pB_BWD_clicked"
+QT_MOC_LITERAL(80, 1146, 17), // "openWaitingDialog"
+QT_MOC_LITERAL(81, 1164, 17), // "onWaitingFinished"
+QT_MOC_LITERAL(82, 1182, 12), // "onLoginValid"
+QT_MOC_LITERAL(83, 1195, 9), // "loginFlag"
+QT_MOC_LITERAL(84, 1205, 16), // "createQRInfoFile"
+QT_MOC_LITERAL(85, 1222, 8), // "mSurname"
+QT_MOC_LITERAL(86, 1231, 20), // "generateRandomString"
+QT_MOC_LITERAL(87, 1252, 6) // "length"
 
     },
     "MainWindow\0checkDirectories\0\0"
@@ -121,15 +128,15 @@ QT_MOC_LITERAL(80, 1152, 17) // "onWaitingFinished"
     "receivedMacAddr\0getReaderID\0onTimerTimeout\0"
     "onDialogSaveClicked\0strMAC\0strQR\0"
     "editedStr\0checkReaderID\0onQRCodeGenerated\0"
-    "Name\0Surname\0Email\0StartingDate\0"
-    "StartingTime\0ExpiringDate\0ExpiringTime\0"
-    "showQRcode\0imagePath\0updateQrCodeList\0"
-    "qrCodesDirectory\0parseDecodedQR\0"
-    "decodedQR\0QString&\0name\0surname\0email\0"
-    "startDate\0startTime\0expDate\0expTime\0"
-    "onRefreshTimerTimeout\0handleRequest\0"
-    "QHttpRequest*\0req\0QHttpResponse*\0resp\0"
-    "on_pushB_NewQrCode_clicked\0"
+    "Name\0Surname\0PhoneNumber\0Email\0"
+    "StartingDate\0StartingTime\0ExpiringDate\0"
+    "ExpiringTime\0showQRcode\0imagePath\0"
+    "updateQrCodeList\0qrCodesDirectory\0"
+    "parseDecodedQR\0decodedQR\0QString&\0"
+    "name\0surname\0email\0startDate\0startTime\0"
+    "expDate\0expTime\0onRefreshTimerTimeout\0"
+    "handleRequest\0QHttpRequest*\0req\0"
+    "QHttpResponse*\0resp\0on_pushB_NewQrCode_clicked\0"
     "on_pB_downloadQR_clicked\0createReaderFile\0"
     "updateReaderList\0readersDirectory\0"
     "on_listWidget_Readers_itemClicked\0"
@@ -145,7 +152,9 @@ QT_MOC_LITERAL(80, 1152, 17) // "onWaitingFinished"
     "readerMAC\0on_pB_deleteReader_clicked\0"
     "deleteReader\0on_pB_remoteOpen_clicked\0"
     "on_pB_FWD_clicked\0on_pB_BWD_clicked\0"
-    "openWaitingDialog\0onWaitingFinished"
+    "openWaitingDialog\0onWaitingFinished\0"
+    "onLoginValid\0loginFlag\0createQRInfoFile\0"
+    "mSurname\0generateRandomString\0length"
 };
 #undef QT_MOC_LITERAL
 
@@ -155,7 +164,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      39,   14, // methods
+      42,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -163,45 +172,48 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  209,    2, 0x08 /* Private */,
-       3,    1,  210,    2, 0x08 /* Private */,
-       5,    0,  213,    2, 0x08 /* Private */,
-       6,    0,  214,    2, 0x08 /* Private */,
-       7,    0,  215,    2, 0x08 /* Private */,
-       8,    1,  216,    2, 0x08 /* Private */,
-      10,    1,  219,    2, 0x08 /* Private */,
-      11,    0,  222,    2, 0x08 /* Private */,
-      12,    3,  223,    2, 0x08 /* Private */,
-      16,    1,  230,    2, 0x08 /* Private */,
-      17,    7,  233,    2, 0x08 /* Private */,
-      25,    1,  248,    2, 0x08 /* Private */,
-      27,    1,  251,    2, 0x08 /* Private */,
-      29,    8,  254,    2, 0x08 /* Private */,
-      39,    0,  271,    2, 0x08 /* Private */,
-      40,    2,  272,    2, 0x08 /* Private */,
-      45,    0,  277,    2, 0x08 /* Private */,
-      46,    0,  278,    2, 0x08 /* Private */,
-      47,    2,  279,    2, 0x08 /* Private */,
-      48,    1,  284,    2, 0x08 /* Private */,
-      50,    1,  287,    2, 0x08 /* Private */,
-      53,    1,  290,    2, 0x08 /* Private */,
-      55,    1,  293,    2, 0x08 /* Private */,
-      56,    1,  296,    2, 0x08 /* Private */,
-      57,    0,  299,    2, 0x08 /* Private */,
-      58,    2,  300,    2, 0x08 /* Private */,
-      60,    4,  305,    2, 0x08 /* Private */,
-      65,    0,  314,    2, 0x08 /* Private */,
-      66,    1,  315,    2, 0x08 /* Private */,
-      68,    0,  318,    2, 0x08 /* Private */,
-      69,    0,  319,    2, 0x08 /* Private */,
-      70,    5,  320,    2, 0x08 /* Private */,
-      74,    0,  331,    2, 0x08 /* Private */,
-      75,    0,  332,    2, 0x08 /* Private */,
-      76,    0,  333,    2, 0x08 /* Private */,
-      77,    0,  334,    2, 0x08 /* Private */,
-      78,    0,  335,    2, 0x08 /* Private */,
-      79,    0,  336,    2, 0x08 /* Private */,
-      80,    0,  337,    2, 0x08 /* Private */,
+       1,    0,  224,    2, 0x08 /* Private */,
+       3,    1,  225,    2, 0x08 /* Private */,
+       5,    0,  228,    2, 0x08 /* Private */,
+       6,    0,  229,    2, 0x08 /* Private */,
+       7,    0,  230,    2, 0x08 /* Private */,
+       8,    1,  231,    2, 0x08 /* Private */,
+      10,    1,  234,    2, 0x08 /* Private */,
+      11,    0,  237,    2, 0x08 /* Private */,
+      12,    3,  238,    2, 0x08 /* Private */,
+      16,    1,  245,    2, 0x08 /* Private */,
+      17,    8,  248,    2, 0x08 /* Private */,
+      26,    1,  265,    2, 0x08 /* Private */,
+      28,    1,  268,    2, 0x08 /* Private */,
+      30,    8,  271,    2, 0x08 /* Private */,
+      40,    0,  288,    2, 0x08 /* Private */,
+      41,    2,  289,    2, 0x08 /* Private */,
+      46,    0,  294,    2, 0x08 /* Private */,
+      47,    0,  295,    2, 0x08 /* Private */,
+      48,    2,  296,    2, 0x08 /* Private */,
+      49,    1,  301,    2, 0x08 /* Private */,
+      51,    1,  304,    2, 0x08 /* Private */,
+      54,    1,  307,    2, 0x08 /* Private */,
+      56,    1,  310,    2, 0x08 /* Private */,
+      57,    1,  313,    2, 0x08 /* Private */,
+      58,    0,  316,    2, 0x08 /* Private */,
+      59,    2,  317,    2, 0x08 /* Private */,
+      61,    4,  322,    2, 0x08 /* Private */,
+      66,    0,  331,    2, 0x08 /* Private */,
+      67,    1,  332,    2, 0x08 /* Private */,
+      69,    0,  335,    2, 0x08 /* Private */,
+      70,    0,  336,    2, 0x08 /* Private */,
+      71,    5,  337,    2, 0x08 /* Private */,
+      75,    0,  348,    2, 0x08 /* Private */,
+      76,    0,  349,    2, 0x08 /* Private */,
+      77,    0,  350,    2, 0x08 /* Private */,
+      78,    0,  351,    2, 0x08 /* Private */,
+      79,    0,  352,    2, 0x08 /* Private */,
+      80,    0,  353,    2, 0x08 /* Private */,
+      81,    0,  354,    2, 0x08 /* Private */,
+      82,    1,  355,    2, 0x08 /* Private */,
+      84,    8,  358,    2, 0x08 /* Private */,
+      86,    1,  375,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -214,35 +226,38 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   13,   14,   15,
     QMetaType::Bool, QMetaType::QString,   15,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   18,   19,   20,   21,   22,   23,   24,
-    QMetaType::Void, QMetaType::QString,   26,
-    QMetaType::Void, QMetaType::QString,   28,
-    QMetaType::Bool, QMetaType::QString, 0x80000000 | 31, 0x80000000 | 31, 0x80000000 | 31, 0x80000000 | 31, 0x80000000 | 31, 0x80000000 | 31, 0x80000000 | 31,   30,   32,   33,   34,   35,   36,   37,   38,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   18,   19,   20,   21,   22,   23,   24,   25,
+    QMetaType::Void, QMetaType::QString,   27,
+    QMetaType::Void, QMetaType::QString,   29,
+    QMetaType::Bool, QMetaType::QString, 0x80000000 | 32, 0x80000000 | 32, 0x80000000 | 32, 0x80000000 | 32, 0x80000000 | 32, 0x80000000 | 32, 0x80000000 | 32,   31,   33,   34,   35,   36,   37,   38,   39,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 41, 0x80000000 | 43,   42,   44,
+    QMetaType::Void, 0x80000000 | 42, 0x80000000 | 44,   43,   45,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   13,   15,
-    QMetaType::Void, QMetaType::QString,   49,
-    QMetaType::Void, 0x80000000 | 51,   52,
-    QMetaType::Void, 0x80000000 | 51,   54,
-    QMetaType::Void, 0x80000000 | 51,   54,
-    QMetaType::Void, 0x80000000 | 51,   52,
+    QMetaType::Void, QMetaType::QString,   50,
+    QMetaType::Void, 0x80000000 | 52,   53,
+    QMetaType::Void, 0x80000000 | 52,   55,
+    QMetaType::Void, 0x80000000 | 52,   55,
+    QMetaType::Void, 0x80000000 | 52,   53,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   59,   26,
-    QMetaType::Bool, QMetaType::QString, 0x80000000 | 31, 0x80000000 | 31, 0x80000000 | 31,   61,   62,   63,   64,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   60,   27,
+    QMetaType::Bool, QMetaType::QString, 0x80000000 | 32, 0x80000000 | 32, 0x80000000 | 32,   62,   63,   64,   65,
     QMetaType::Void,
-    QMetaType::Bool, QMetaType::QString,   67,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   71,   72,   30,   73,   63,
+    QMetaType::Bool, QMetaType::QString,   68,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   72,   73,   31,   74,   64,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   83,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   18,   85,   20,   21,   22,   23,   24,   25,
+    QMetaType::QString, QMetaType::Int,   87,
 
        0        // eod
 };
@@ -266,7 +281,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->onDialogSaveClicked((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3]))); break;
         case 9: { bool _r = _t->checkReaderID((*reinterpret_cast< const QString(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 10: _t->onQRCodeGenerated((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4])),(*reinterpret_cast< const QString(*)>(_a[5])),(*reinterpret_cast< const QString(*)>(_a[6])),(*reinterpret_cast< const QString(*)>(_a[7]))); break;
+        case 10: _t->onQRCodeGenerated((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4])),(*reinterpret_cast< const QString(*)>(_a[5])),(*reinterpret_cast< const QString(*)>(_a[6])),(*reinterpret_cast< const QString(*)>(_a[7])),(*reinterpret_cast< const QString(*)>(_a[8]))); break;
         case 11: _t->showQRcode((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 12: _t->updateQrCodeList((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 13: { bool _r = _t->parseDecodedQR((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< QString(*)>(_a[6])),(*reinterpret_cast< QString(*)>(_a[7])),(*reinterpret_cast< QString(*)>(_a[8])));
@@ -298,6 +313,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 36: _t->on_pB_BWD_clicked(); break;
         case 37: _t->openWaitingDialog(); break;
         case 38: _t->onWaitingFinished(); break;
+        case 39: _t->onLoginValid((*reinterpret_cast< const bool(*)>(_a[1]))); break;
+        case 40: _t->createQRInfoFile((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4])),(*reinterpret_cast< const QString(*)>(_a[5])),(*reinterpret_cast< const QString(*)>(_a[6])),(*reinterpret_cast< const QString(*)>(_a[7])),(*reinterpret_cast< const QString(*)>(_a[8]))); break;
+        case 41: { QString _r = _t->generateRandomString((*reinterpret_cast< int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -345,13 +364,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 39)
+        if (_id < 42)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 39;
+        _id -= 42;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 39)
+        if (_id < 42)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 39;
+        _id -= 42;
     }
     return _id;
 }

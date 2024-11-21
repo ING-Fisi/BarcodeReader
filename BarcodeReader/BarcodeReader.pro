@@ -21,9 +21,11 @@ SOURCES += \
     editdialog.cpp \
     errormessage.cpp \
     errormessage2.cpp \
+    logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
     newqrcodedialog.cpp \
+    passwordeditor.cpp \
     qrcode.cpp \
     qrcodereader.cpp \
     waitingdialog.cpp
@@ -34,8 +36,10 @@ HEADERS += \
     editdialog.h \
     errormessage.h \
     errormessage2.h \
+    logindialog.h \
     mainwindow.h \
     newqrcodedialog.h \
+    passwordeditor.h \
     qrcode.h \
     qrcodereader.h \
     waitingdialog.h
@@ -45,9 +49,12 @@ FORMS += \
     editdialog.ui \
     errormessage.ui \
     errormessage2.ui \
+    logindialog.ui \
     mainwindow.ui \
     newqrcodedialog.ui \
+    passwordeditor.ui \
     waitingdialog.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -69,3 +76,18 @@ else:unix: LIBS += -L$$PWD/../lib/ -lqhttpserver
 
 INCLUDEPATH += $$PWD/../src
 DEPENDPATH += $$PWD/../src
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../datepicker_library/source/lib/release/ -ldatepicker
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../datepicker_library/source/lib/debug/ -ldatepicker
+else:unix: LIBS += -L$$PWD/../datepicker_library/source/lib/ -ldatepicker
+
+INCLUDEPATH += $$PWD/../datepicker_library/source/include
+DEPENDPATH += $$PWD/../datepicker_library/source/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../datepicker_library/source/lib/release/libdatepicker.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../datepicker_library/source/lib/debug/libdatepicker.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../datepicker_library/source/lib/release/datepicker.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../datepicker_library/source/lib/debug/datepicker.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../datepicker_library/source/lib/libdatepicker.a

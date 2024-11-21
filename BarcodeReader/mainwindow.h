@@ -14,6 +14,10 @@
 #include "newqrcodedialog.h"
 #include "qrcodereader.h"
 #include "waitingdialog.h"
+#include "logindialog.h"
+
+#include <datepicker.h>
+#include <datepickerhumanreadableformater.h>
 
 
 
@@ -27,6 +31,19 @@
 #include <qhttprequest.h>
 #include <qhttpresponse.h>
 /********************************************************************/
+
+/***************************************************************************************************************************
+ * Files directories
+ ***************************************************************************************************************************/
+const QString fileshomedirectory = "/home/tinylap/";
+const QString filesDirectory = fileshomedirectory + "BarcodeReaderFiles";
+const QString associationsDirectory = filesDirectory+"/Associations"; //"/home/fisitron/BarcodeReaderFiles/Associations";
+const QString logsDirectory = filesDirectory+"/Logs";                 //"/home/fisitron/BarcodeReaderFiles/Logs";
+const QString qrCodesDirectory = filesDirectory+"/QRCodes";           //"/home/fisitron/BarcodeReaderFiles/QRCodes";
+const QString readersDirectory = filesDirectory+"/Readers";           //"/home/fisitron/BarcodeReaderFiles/Readers";
+const QString downloadFolderPath = fileshomedirectory + "Downloads";
+const QString settingsDirectory = filesDirectory+"/Settings";
+/***************************************************************************************************************************/
 
 
 QT_BEGIN_NAMESPACE
@@ -42,11 +59,20 @@ public:
     ~MainWindow();
 
     BarcodeReaderServer* BarcodeReaderServer_Instance;
+
+
     QList<QRCodeReader*> QrcodeReader_list;
+
+    QList<QRCode*> QRCodeListTotal;
+
+
+
     bool receive_sync_packet(QString receivedMacAddr);
 
 
     QTimer* RefreshTimer;
+
+
 
 
 
@@ -68,7 +94,15 @@ private slots:
     void onDialogSaveClicked(const QString &strMAC, const QString &strQR, const QString &editedStr);
     bool checkReaderID(const QString editedStr);
 
-    void onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime);
+    //void onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &PhoneNumber, const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime);
+    void onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &PhoneNumber, const QString &Email, const QString &QrType, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime,
+                             const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
+                             const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
+                             const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
+                             const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
+                             const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
+                             const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
+                             const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday);
 
     void showQRcode(QString imagePath);
 
@@ -124,6 +158,19 @@ private slots:
     void openWaitingDialog();
     void onWaitingFinished();
 
+    void onLoginValid(const bool loginFlag);
+
+    //void createQRInfoFile(const QString &Name, const QString &mSurname, const QString &PhoneNumber,const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime);
+    void createQRInfoFile(const QString &Name, const QString &mSurname, const QString &PhoneNumber, const QString &Email, const QString &QrType, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime,
+                             const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
+                             const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
+                             const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
+                             const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
+                             const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
+                             const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
+                             const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday);
+
+    QString generateRandomString(int length);
     //void onControlTimerTimeout();
 
 private:
@@ -135,5 +182,6 @@ private:
     ErrorMessage *errorMessageDialog;
     errormessage2 *errorMessage2Dialog;
     NewQrCodeDialog *newQrCodeDialog;
+    LoginDialog *loginDialog;
 };
 #endif // MAINWINDOW_H
