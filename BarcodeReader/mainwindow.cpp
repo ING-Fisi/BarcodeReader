@@ -73,30 +73,30 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //***************************************************************//
-//    ui->tableWidget_qrcode_content->setColumnCount(3);
-//    ui->tableWidget_qrcode_content->setRowCount(1);
+    //    ui->tableWidget_qrcode_content->setColumnCount(3);
+    //    ui->tableWidget_qrcode_content->setRowCount(1);
 
-//    DatePicker* picker1 = new DatePicker(this,DayType);
-//    picker1->setEditable(true);
-//    picker1->setTimeEditable(true);
-//    picker1->setTimePeriod(QTime(0, 0, 0), QTime(22, 59, 59));
-//    picker1->setTimeInputFormat("hh:mm:ss");
+    //    DatePicker* picker1 = new DatePicker(this,DayType);
+    //    picker1->setEditable(true);
+    //    picker1->setTimeEditable(true);
+    //    picker1->setTimePeriod(QTime(0, 0, 0), QTime(22, 59, 59));
+    //    picker1->setTimeInputFormat("hh:mm:ss");
 
-//    DatePickerHumanReadableFormater *formater = new DatePickerHumanReadableFormater();
-//    // setup period delimeters in date string representation
-//    formater->setDateFromWord(QString::null);
-//    formater->setDateToWord("-");
-//    // disable showing words "today"/"yesterday"/"tomorrow" instead of date
-//    formater->setSpecialDayWordShown(true);
-//    // formater is used for date string representation in date picker label
-//    picker1->setFormater(formater);
+    //    DatePickerHumanReadableFormater *formater = new DatePickerHumanReadableFormater();
+    //    // setup period delimeters in date string representation
+    //    formater->setDateFromWord(QString::null);
+    //    formater->setDateToWord("-");
+    //    // disable showing words "today"/"yesterday"/"tomorrow" instead of date
+    //    formater->setSpecialDayWordShown(true);
+    //    // formater is used for date string representation in date picker label
+    //    picker1->setFormater(formater);
 
-//    QLabel* QRCode_name = new QLabel("PN342334");
-//    QPushButton *stronzo = new QPushButton("STRONZO");
+    //    QLabel* QRCode_name = new QLabel("PN342334");
+    //    QPushButton *stronzo = new QPushButton("STRONZO");
 
-//    ui->tableWidget_qrcode_content->setCellWidget(0,0,QRCode_name);
-//    ui->tableWidget_qrcode_content->setCellWidget(0,1,picker1);
-//    ui->tableWidget_qrcode_content->setCellWidget(0,2,stronzo);
+    //    ui->tableWidget_qrcode_content->setCellWidget(0,0,QRCode_name);
+    //    ui->tableWidget_qrcode_content->setCellWidget(0,1,picker1);
+    //    ui->tableWidget_qrcode_content->setCellWidget(0,2,stronzo);
     //*******************************************************************//
 
 
@@ -1047,13 +1047,13 @@ void MainWindow::on_pushB_NewQrCode_clicked()
  ********************************************************************************************************************/
 //void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &PhoneNumber,const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime)
 void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, const QString &PhoneNumber, const QString &Email, const QString &QrType, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime,
-                         const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
-                         const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
-                         const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
-                         const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
-                         const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
-                         const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
-                         const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday)
+                                   const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
+                                   const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
+                                   const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
+                                   const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
+                                   const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
+                                   const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
+                                   const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday)
 {
     /**************************************************************
      * Variabile di appoggio per poter eventualmente
@@ -1110,13 +1110,13 @@ void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, 
     /********************************************************************************************************
      * Lancia il programma qrencode sul Raspberry per generare il QR Code
      ********************************************************************************************************/
-    //QString program = "qrencode";
-    QString program = "/home/tinylap/PROGETTI/BarcodeReader_SERVER/libqrencode/build/qrencode";
+    QString program = "qrencode";
+    //QString program = "/home/tinylap/PROGETTI/BarcodeReader_SERVER/libqrencode/build/qrencode";
     QStringList arguments;
 
     const QString fixedPart = "fisiQR!";
-    QString randomPart = generateRandomString(25);
-    QString qrCode = fixedPart+randomPart;
+    QString PartNumber = generateRandomString(25);
+    QString qrCode = fixedPart+PartNumber;
     arguments << qrCode << "-o" << imagePath;
 
     //arguments << "!N!" + Name
@@ -1139,13 +1139,13 @@ void MainWindow::onQRCodeGenerated(const QString &Name, const QString &Surname, 
      ******************************************************************************************************************/
     //createQRInfoFile(Name, mSurname, PhoneNumber, Email, StartingDate, StartingTime, ExpiringDate, ExpiringTime);
     createQRInfoFile(Name, mSurname, PhoneNumber, Email, QrType, StartingDate, StartingTime, ExpiringDate, ExpiringTime,
-                             monday, StartingTimeMonday, ExpiringTimeMonday,
-                             tuesday, StartingTimeTuesday, ExpiringTimeTuesday,
-                             wednsday, StartingTimeWednsday, ExpiringTimeWednsday,
-                             thursday, StartingTimeThursday, ExpiringTimeThursday,
-                             friday, StartingTimeFriday, ExpiringTimeFriday,
-                             saturday, StartingTimeSaturday, ExpiringTimeSaturday,
-                             sunday, StartingTimeSunday, ExpiringTimeSunday);
+                     monday, StartingTimeMonday, ExpiringTimeMonday,
+                     tuesday, StartingTimeTuesday, ExpiringTimeTuesday,
+                     wednsday, StartingTimeWednsday, ExpiringTimeWednsday,
+                     thursday, StartingTimeThursday, ExpiringTimeThursday,
+                     friday, StartingTimeFriday, ExpiringTimeFriday,
+                     saturday, StartingTimeSaturday, ExpiringTimeSaturday,
+                     sunday, StartingTimeSunday, ExpiringTimeSunday);
     /******************************************************************************************************************/
 
 
@@ -1195,13 +1195,13 @@ QString MainWindow::generateRandomString(int length){
  ************************************************************************************************/
 //void MainWindow::createQRInfoFile(const QString &Name, const QString &mSurname, const QString &PhoneNumber,const QString &Email, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime)
 void MainWindow::createQRInfoFile(const QString &Name, const QString &mSurname, const QString &PhoneNumber, const QString &Email, const QString &QrType, const QString &StartingDate, const QString &StartingTime, const QString &ExpiringDate, const QString &ExpiringTime,
-                             const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
-                             const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
-                             const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
-                             const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
-                             const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
-                             const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
-                             const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday)
+                                  const QString &monday, const QString &StartingTimeMonday, const QString &ExpiringTimeMonday,
+                                  const QString &tuesday, const QString &StartingTimeTuesday, const QString &ExpiringTimeTuesday,
+                                  const QString &wednsday, const QString &StartingTimeWednsday, const QString &ExpiringTimeWednsday,
+                                  const QString &thursday, const QString &StartingTimeThursday, const QString &ExpiringTimeThursday,
+                                  const QString &friday, const QString &StartingTimeFriday, const QString &ExpiringTimeFriday,
+                                  const QString &saturday, const QString &StartingTimeSaturday, const QString &ExpiringTimeSaturday,
+                                  const QString &sunday, const QString &StartingTimeSunday, const QString &ExpiringTimeSunday)
 {
 
     //QString readersDirectory = "/home/fisitron/BarcodeReaderFiles/Readers";
@@ -1612,6 +1612,8 @@ void MainWindow::updateQrCodeList(const QString &qrCodesDirectory){
 
             QRCode *QRcodeinstance = new QRCode(this);
 
+
+
             QRcodeinstance->name = in.readLine();
             QRcodeinstance->surname = in.readLine();
             QRcodeinstance->phonenumber = in.readLine();
@@ -1653,7 +1655,7 @@ void MainWindow::updateQrCodeList(const QString &qrCodesDirectory){
                 type=DaysType;
             }
 
-            QRcodeinstance->qrcode_datepicker_instance = new DatePicker(this,type);
+            QRcodeinstance->qrcode_datepicker_instance = new DatePicker(this,QRcodeinstance->name + " " + QRcodeinstance->surname,type);
 
             //define  WD "WithDeadline"
 
@@ -1738,7 +1740,7 @@ void MainWindow::updateQrCodeList(const QString &qrCodesDirectory){
      **************************************************************************************/
     int numOfQRCode=QRCodeListTotal.length();
     int index=0;
-    ui->tableWidget_qrcode_content->setColumnCount(3);
+    ui->tableWidget_qrcode_content->setColumnCount(2);
     ui->tableWidget_qrcode_content->setRowCount(numOfQRCode);
 
     foreach(QRCode* qrCode_i, QRCodeListTotal){
@@ -1755,27 +1757,33 @@ void MainWindow::updateQrCodeList(const QString &qrCodesDirectory){
         picker->setTimeEditable(true);
         picker->setTimeInputFormat("hh:mm");
 
-        DatePickerHumanReadableFormater *formater = new DatePickerHumanReadableFormater();
-        // setup period delimeters in date string representation
-        formater->setDateFromWord(QString()); //formater->setDateFromWord(QString::null);
-        formater->setDateToWord("-");
-        // disable showing words "today"/"yesterday"/"tomorrow" instead of date
-        formater->setSpecialDayWordShown(true);
-        // formater is used for date string representation in date picker label
-        picker->setFormater(formater);
+        //        DatePickerHumanReadableFormater *formater = new DatePickerHumanReadableFormater();
+        //        // setup period delimeters in date string representation
+        //        formater->setDateFromWord(QString()); //formater->setDateFromWord(QString::null);
+        //        formater->setDateToWord("-");
+        //        // disable showing words "today"/"yesterday"/"tomorrow" instead of date
+        //        formater->setSpecialDayWordShown(true);
+        //        // formater is used for date string representation in date picker label
+        //        picker->setFormater(formater);
 
 
         QPushButton *pB_Button = new QPushButton("BUTTON");
-
-        ui->tableWidget_qrcode_content->setCellWidget(index,0,QRCode_name);
-        ui->tableWidget_qrcode_content->setCellWidget(index,1,picker);
-        ui->tableWidget_qrcode_content->setCellWidget(index,2,pB_Button);
+        ui->tableWidget_qrcode_content->setCellWidget(index,0,picker);
+        ui->tableWidget_qrcode_content->setCellWidget(index,1,pB_Button);
 
         index++;
 
     }
     /**************************************************************************************/
 
+
+    ui->tableWidget_qrcode_content->setSizePolicy(
+                QSizePolicy::Expanding, QSizePolicy::Preferred);
+    ui->tableWidget_qrcode_content->setWordWrap(true);
+    ui->tableWidget_qrcode_content->horizontalHeader()
+            ->setSectionResizeMode(QHeaderView::Stretch );
+    ui->tableWidget_qrcode_content->verticalHeader()
+            ->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 }
 /*********************************************************************************************************************************************************/

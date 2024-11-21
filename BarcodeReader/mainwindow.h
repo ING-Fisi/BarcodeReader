@@ -35,7 +35,16 @@
 /***************************************************************************************************************************
  * Files directories
  ***************************************************************************************************************************/
-const QString fileshomedirectory = "/home/tinylap/";
+//const QString fileshomedirectory = "/home/tinylap/";
+//const QString filesDirectory = fileshomedirectory + "BarcodeReaderFiles";
+//const QString associationsDirectory = filesDirectory+"/Associations"; //"/home/fisitron/BarcodeReaderFiles/Associations";
+//const QString logsDirectory = filesDirectory+"/Logs";                 //"/home/fisitron/BarcodeReaderFiles/Logs";
+//const QString qrCodesDirectory = filesDirectory+"/QRCodes";           //"/home/fisitron/BarcodeReaderFiles/QRCodes";
+//const QString readersDirectory = filesDirectory+"/Readers";           //"/home/fisitron/BarcodeReaderFiles/Readers";
+//const QString downloadFolderPath = fileshomedirectory + "Downloads";
+//const QString settingsDirectory = filesDirectory+"/Settings";
+
+const QString fileshomedirectory = "";
 const QString filesDirectory = fileshomedirectory + "BarcodeReaderFiles";
 const QString associationsDirectory = filesDirectory+"/Associations"; //"/home/fisitron/BarcodeReaderFiles/Associations";
 const QString logsDirectory = filesDirectory+"/Logs";                 //"/home/fisitron/BarcodeReaderFiles/Logs";

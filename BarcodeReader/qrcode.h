@@ -30,6 +30,8 @@ public:
     ~QRCode();
 
 
+    QString QRcodePartNumber;
+
     QString name;
     QString surname;
     QString phonenumber;

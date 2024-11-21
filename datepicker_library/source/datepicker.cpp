@@ -87,7 +87,7 @@ private:
     }
 };
 
-DatePicker::DatePicker(QWidget *parent, DatePickerType dp) :
+DatePicker::DatePicker(QWidget *parent, QString name, DatePickerType dp) :
     QWidget(parent),
     d_ptr(new DatePickerPrivate(this))
 {
@@ -108,6 +108,9 @@ DatePicker::DatePicker(QWidget *parent, DatePickerType dp) :
     d->time_end = QTime(23, 59);
 
     d->picker_type = dp;
+
+    d->date_label->setText(name);
+
 }
 
 DatePicker::~DatePicker()
@@ -281,10 +284,10 @@ void DatePicker::setDate(const QDate &date)
 
     d->popup->setDate(date);
 
-    if (d->formater != 0)
-        d->date_label->setText(d->formater->format(date));
-    else
-        d->date_label->clear();
+    //    if (d->formater != 0)
+    //        d->date_label->setText(d->formater->format(date));
+    //    else
+    //        d->date_label->clear();
 }
 
 void DatePicker::setDatePeriod(const QDate &begin, const QDate &end)
@@ -298,15 +301,15 @@ void DatePicker::setDatePeriod(const QDate &begin, const QDate &end)
 
     d->popup->setDatePeriod(begin, end);
 
-    if (d->formater != 0) {
-        d->date_label->setText(
-                    isTimeEditable()
-                    ? d->formater->format(dateTimePeriodBegin(), dateTimePeriodEnd())
-                    : d->formater->format(begin, end));
-    }
-    else {
-        d->date_label->clear();
-    }
+    //    if (d->formater != 0) {
+    //        d->date_label->setText(
+    //                    isTimeEditable()
+    //                    ? d->formater->format(dateTimePeriodBegin(), dateTimePeriodEnd())
+    //                    : d->formater->format(begin, end));
+    //    }
+    //    else {
+    //        d->date_label->clear();
+    //    }
 }
 
 void DatePicker::setTimePeriod(const QTime &begin, const QTime &end)
@@ -320,10 +323,10 @@ void DatePicker::setTimePeriod(const QTime &begin, const QTime &end)
 
     d->popup->setTimePeriod(begin, end);
 
-    if (d->formater != 0)
-        d->date_label->setText(d->formater->format(dateTimePeriodBegin(), dateTimePeriodEnd()));
-    else
-        d->date_label->clear();
+    //    if (d->formater != 0)
+    //        d->date_label->setText(d->formater->format(dateTimePeriodBegin(), dateTimePeriodEnd()));
+    //    else
+    //        d->date_label->clear();
 }
 
 void DatePicker::setDateTimePeriod(const QDateTime &begin, const QDateTime &end)
@@ -339,10 +342,10 @@ void DatePicker::setDateTimePeriod(const QDateTime &begin, const QDateTime &end)
     d->popup->setDatePeriod(begin.date(), end.date());
     d->popup->setTimePeriod(begin.time(), end.time());
 
-    if (d->formater != 0)
-        d->date_label->setText(d->formater->format(dateTimePeriodBegin(), dateTimePeriodEnd()));
-    else
-        d->date_label->clear();
+    //    if (d->formater != 0)
+    //        d->date_label->setText(d->formater->format(dateTimePeriodBegin(), dateTimePeriodEnd()));
+    //    else
+    //        d->date_label->clear();
 }
 
 void DatePicker::onShowPopupButtonClicked()
@@ -351,18 +354,19 @@ void DatePicker::onShowPopupButtonClicked()
 
     if (!d->popup->isVisible()) {
         d->popup->reset();
+        d->popup->setDatePickerType(d->picker_type);
 
-        if (d->picker_type == DayType) {
-            d->popup->setDate(d->date_begin);
-        }
-        if (d->picker_type == DaysType) {
-            d->popup->setTimePeriod(d->time_begin, d->time_end);
-        }
-        if (d->picker_type == PeriodType) {
-            d->popup->setDatePeriod(d->date_begin, d->date_end);
-            if (d->popup->isTimeEditable())
-                d->popup->setTimePeriod(d->time_begin, d->time_end);
-        }
+        //        if (d->picker_type == DayType) {
+        //            d->popup->setDate(d->date_begin);
+        //        }
+        //        if (d->picker_type == DaysType) {
+        //            d->popup->setTimePeriod(d->time_begin, d->time_end);
+        //        }
+        //        if (d->picker_type == PeriodType) {
+        //            d->popup->setDatePeriod(d->date_begin, d->date_end);
+        //            if (d->popup->isTimeEditable())
+        //                d->popup->setTimePeriod(d->time_begin, d->time_end);
+        //        }
 
         d->adjustPopupPosition();
         d->popup->show();

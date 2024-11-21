@@ -17,7 +17,7 @@ class DATEPICKER_EXPORT DatePicker : public QWidget {
 public:
     DatePickerPrivate * const d_ptr;
 public:
-    explicit DatePicker(QWidget *parent = 0,DatePickerType dp = DayType);
+    explicit DatePicker(QWidget *parent = 0, QString name = "", DatePickerType dp = DayType);
     ~DatePicker();
 
     QLabel *label() const;

@@ -21,7 +21,7 @@ class QCheckBoxCustom : public QCheckBox
 
 public:
     explicit QCheckBoxCustom(const QString &text);
-    ~QCheckBoxCustom(){};
+    ~QCheckBoxCustom(){}
 
 
     DatePickerTimeEdit *time_edit_1;
@@ -105,9 +105,9 @@ class DatePickerPopupPrivate {
         inputs_layout->addWidget(calendar_widget_2, 0, 1);
 
         inputs_layout->addWidget(time_edit_1, 1, 0);
-        inputs_layout->addWidget(time_edit_2, 1, 1);
+        inputs_layout->addWidget(time_edit_2, 2, 0);
 
-        inputs_layout->addWidget(tableweek, 2, 0);
+        inputs_layout->addWidget(tableweek, 3, 0);
 
         QVBoxLayout *main_layout = new QVBoxLayout(q);
         main_layout->setContentsMargins(QMargins(15, 10, 15, 10));
@@ -118,7 +118,7 @@ class DatePickerPopupPrivate {
 
         q->setLayout(main_layout);
 
-        q->setDatePickerType(footer->pickerType());
+        //q->setDatePickerType(footer->pickerType());
 
         q->setAttribute(Qt::WA_TranslucentBackground);
 
@@ -209,10 +209,13 @@ void DatePickerPopup::setDatePickerType(DatePickerType picker_type)
     d->tableweek->setVisible(false);
 
 
+    d->footer->setPickerType(picker_type);
+
+
     switch (picker_type) {
     case DayType:
         d->calendar_widget_1->setVisible(true);
-        d->calendar_widget_2->setVisible(true);
+        d->calendar_widget_2->setVisible(false);
         d->calendar_widget_1->setFrameVisible(true);
         d->calendar_widget_2->setFrameVisible(false);
         d->calendar_widget_2->setEnabled(false);
@@ -247,30 +250,12 @@ void DatePickerPopup::setDatePickerType(DatePickerType picker_type)
 
     }
 
-    //bool is_period_type = (picker_type == PeriodType);
-    //bool show_time_input = (is_period_type && isTimeEditable());
-
-    //    d->calendar_widget_2->setVisible(is_period_type);
-
-    //    d->calendar_widget_1->setFrameVisible(show_time_input);
-    //    d->calendar_widget_2->setFrameVisible(show_time_input);
-
-    //    d->time_edit_1->setVisible(show_time_input);
-    //    d->time_edit_2->setVisible(show_time_input);
 
 
 
 
-//    if (is_period_type && isTimeEditable()) {
-//        setDatePeriod(d->calendar_widget_1->selectedDate(), d->calendar_widget_2->selectedDate());
-//        setTimePeriod(d->time_edit_1->time(), d->time_edit_2->time());
-//    }
-//    else if (is_period_type) {
-//        setDatePeriod(d->calendar_widget_1->selectedDate(), d->calendar_widget_2->selectedDate());
-//    }
-//    else {
-//        setDate(d->calendar_widget_1->selectedDate());
-//    }
+
+
 }
 
 void DatePickerPopup::setAllowedPickerTypes(DatePickerTypes picker_types)
